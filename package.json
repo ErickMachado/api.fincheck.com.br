@@ -1,6 +1,10 @@
 {
   "author": "Erick Machado <erick.gsmachado@gmail.com>",
   "description": "API REST do Fincheck e laboratório pessoal para aprender engenharia back-end. Feito com Node.js e TypeScript 💚",
+  "devDependencies": {
+    "@types/node": "26.1.0",
+    "typescript": "6.0.3"
+  },
   "license": "MIT",
   "name": "@fincheck/backend",
   "private": true,
