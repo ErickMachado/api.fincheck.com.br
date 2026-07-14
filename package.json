@@ -15,5 +15,9 @@
   "repository": {
     "url": "git@github.com:ErickMachado/api.fincheck.com.br.git",
     "type": "git"
+  },
+  "scripts": {
+    "lint:commit": "commitlint --edit $1",
+    "prepare": "husky"
   }
 }
