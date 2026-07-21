@@ -19,6 +19,8 @@
     "type": "git"
   },
   "scripts": {
+    "format:check": "oxfmt --check",
+    "format:fix": "oxfmt",
     "lint:commit": "commitlint --edit $1",
     "prepare": "husky"
   }
