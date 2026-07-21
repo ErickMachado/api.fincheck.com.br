@@ -1,0 +1,9 @@
+{
+  "rules": {
+    "no-duplicate-imports": "error",
+    "no-empty": "error",
+    "no-var": "error",
+    "no-console": "error",
+    "eqeqeq": "error"
+  }
+}
