@@ -8,7 +8,8 @@
     "husky": "9.1.7",
     "oxfmt": "0.58.0",
     "oxlint": "1.73.0",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "vitest": "4.1.10"
   },
   "license": "MIT",
   "name": "@fincheck/backend",
