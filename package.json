@@ -25,6 +25,8 @@
     "lint:commit": "commitlint --edit $1",
     "lint:check": "oxlint",
     "lint:fix": "oxlint --fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test:e2e": "vitest run --dir tests/e2e",
+    "test:e2e:watch": "vitest --dir tests/e2e"
   }
 }
