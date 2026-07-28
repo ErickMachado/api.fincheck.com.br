@@ -1,0 +1,14 @@
+name: 'Continuous Integration'
+
+on:
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  lint_commit:
+    name: 'Lint Commit'
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 'Checkout Repository'
+        uses: 'actions/checkout@v7'
