@@ -5,6 +5,7 @@ export default defineConfig({
     tsconfigPaths: true
   },
   test: {
-    environment: 'node'
+    environment: 'node',
+    passWithNoTests: true
   }
 })
