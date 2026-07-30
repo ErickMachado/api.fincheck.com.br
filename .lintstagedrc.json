@@ -1,4 +1,4 @@
 {
-  "*.{yml,yaml,md,ts,js}": "oxfmt",
-  "*.{ts,js}": "oxlint"
+  "*.{yml,yaml,md}": "oxfmt",
+  "*.{ts,js}": ["oxfmt", "oxlint"]
 }
