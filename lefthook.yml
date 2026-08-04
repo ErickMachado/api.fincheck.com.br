@@ -1,0 +1,25 @@
+commit-msg:
+  commands:
+    'Lint Commit Message':
+      run: 'npm run lint:commit'
+pre-commit:
+  parallel: false
+  jobs:
+    - run: "npx oxfmt '{staged_files}'"
+      glob:
+        - '*.ts'
+        - '*.js'
+        - '*.md'
+        - '*.json'
+        - '*.yml'
+        - '*.yaml'
+      stage_fixed: true
+    - run: "npx oxlint --fix '{staged_files}'"
+      glob:
+        - '*.ts'
+        - '*.js'
+      stage_fixed: true
+pre-push:
+  commands:
+    'Run Automated Tests':
+      run: 'npm run test:e2e'
