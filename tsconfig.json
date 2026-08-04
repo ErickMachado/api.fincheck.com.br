@@ -11,6 +11,10 @@
     ],
     "module": "NodeNext",
     "moduleResolution": "Node16",
+    "paths": {
+      "@common/*": ["./src/common/*"],
+      "@main/*": ["./src/main/*"]
+    },
     "skipLibCheck": true,
     "strict": true,
     "target": "ES2024"
