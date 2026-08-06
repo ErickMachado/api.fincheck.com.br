@@ -22,4 +22,4 @@ pre-commit:
 pre-push:
   commands:
     'Run Automated Tests':
-      run: 'npm run test:e2e'
+      run: 'npm run test'
