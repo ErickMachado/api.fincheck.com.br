@@ -1,5 +1,6 @@
 import { fastify, type FastifyInstance } from 'fastify'
 import { type Configuration } from '@common/core/config'
+import { problem } from '@main/plugins/problem'
 
 export class FincheckAPI {
   private constructor(
@@ -20,6 +21,8 @@ export class FincheckAPI {
 
   public static async create(config: Configuration): Promise<FincheckAPI> {
     const app = fastify()
+
+    app.setErrorHandler(problem)
 
     return new FincheckAPI(app, config)
   }
