@@ -22,6 +22,6 @@ Considere essa etapa concluída quando NÃO houver informações na zona cinzent
 
 Toda a informação reunida na etapa 1 agora deve ser organizada em um documento estruturado. Leia o arquivo [TEMPLATE.md](./references/TEMPLATE.md) e aplique as informações nesse template. Siga rigorosamente a estrutura e NÃO adicione seções ou informações, porém, Você pode esconder seções que não se aplicarem ao caso da funcionalidade.
 
-Após terminar, faça um resumo em bullet points e peça ao usuário para revisar e aprovar o documento. Uma vez aprovado, anexe o documento no Linear em uma aba chamada "TechSpec" e escolha o ícone `Chip` em verde.
+Após terminar, faça um breve resumo para o usuário. Anexe o documento no Linear em uma aba chamada "TechSpec" e escolha o ícone `Chip` em verde.
 
 Considere essa etapa concluída quando o documento estiver anexado no respectivo projeto no Linear.

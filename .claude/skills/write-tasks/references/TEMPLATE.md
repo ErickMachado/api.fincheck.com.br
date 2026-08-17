@@ -1,26 +1,19 @@
-# Tarefas: [funcionalidade]
-
-## Visão Geral
-
-[Liste as tarefas que precisam ser executadas e o status de cada uma:
-
-| ID       | Status       | Dependências       |
-| :------- | :----------- | :----------------- |
-| `TASK-*` | Bloqueada    | `TASK-*`, `TASK-*` |
-| `TASK-*` | Em andamento | -                  |
-| `TASK-*` | Completa     | -                  |
-
-]
-
----
-
-## `[TASK-*]`: [Título curto]
+[Descreva brevemente o contexto e objetivo da tarefa]
 
 ## Subtarefas
 
 [Faça um checklist de pequenos passos que devem ser executados para completar a tarefa:
 
 - [ ] [descrição do passo]
+
+]
+
+## Critérios de Aceitação
+
+[Liste os IDs dos critérios relacionados a tarefa, sem duplicar as descrições:
+
+- CA-01
+- CA-02
 
 ]
 
@@ -42,11 +35,13 @@
 
 ## Testes
 
-[Liste os testes que devem ser cobertos nessa tarefa:
+[Liste os IDs dos testes mapeados para essa tarefa:
 
-| ID     | Critérios de Aceitação |
-| :----- | :--------------------- |
-| `TI-*` | `CA-*`, `CA-*`         |
-| `TU-*` | `CA-*`, `CA-*`         |
+- [ ] TU-01: [nome do teste]
+- [ ] TI-01: [nome do teste]
 
 ]
+
+## Arquivos Relevantes
+
+[Se aplicável, liste arquivos de referência relevantes para essa tarefa]

@@ -1,5 +1,3 @@
-# PRD: [funcionalidade]
-
 ## Visão Geral
 
 [Faça uma breve introdução sobre o problema que será resolvido e porque]
@@ -18,9 +16,9 @@
 
 [Decomponha o que precisa ser feito em user stories seguindo o modelo INVEST (Independent, Negotiable, Valuable, Estimable, Small, Testable). Identifique cada uma para fins de rastreamento. Use o identificador `US-*` para cada user story. Quando possível, use as personas mapeadas para descrever quem é o usuário. Siga o modelo:
 
-| ID     | Descrição                                             |
-| :----- | :---------------------------------------------------- |
-| [US-*] | Como [papel], gostaria que [ação] para que [objetivo] |
+| ID     | Descrição                                                              |
+| :----- | :--------------------------------------------------------------------- |
+| [US-*] | Como [papel]&lt;br&gt;Gostaria que [ação]&lt;br&gt;Para que [objetivo] |
 
 ]
 
@@ -28,9 +26,9 @@
 
 [Para cada user story, liste um ou mais critérios de aceitação usando o formato Gherkin. Lembre-se de cobrir caminhos felizes, validações e regras de negócio. Use o identificador `CA-*` para cada critério. Siga o modelo:
 
-| ID     | Descrição                                          | User story |
-| :----- | :------------------------------------------------- | :--------- |
-| [CA-*] | Dado que [condição] Quando [ação] Então [objetivo] | [US-*]     |
+| ID     | Descrição                                                            | User story |
+| :----- | :------------------------------------------------------------------- | :--------- |
+| [CA-*] | Dado que [condição]&lt;br&gt;Quando [ação]&lt;br&gt;Então [objetivo] | [US-*]     |
 
 ]
 

@@ -1,5 +1,3 @@
-# TechSpec: [funcionalidade]
-
 ## Visão Geral
 
 [Faça uma breve introdução sobre o que será implementado. Não forneça detalhes técnicos já que eles serão detalhados ao longo do documento]
@@ -128,9 +126,9 @@ interface [nome] {
 
 [Registre as principais decisões de escopo da funcionalidade. Use `DEC-*` para identificar cada uma. Siga o modelo:
 
-| ID        | Justificativa                                        | Alternativas |
-| :-------- | :--------------------------------------------------- | :----------- |
-| `[DEC-*]` | [breve justificativa do porque a decisão foi tomada] | [CA-*]       |
+| ID        | Justificativa                                        | Alternativas               |
+| :-------- | :--------------------------------------------------- | :------------------------- |
+| `[DEC-*]` | [breve justificativa do porque a decisão foi tomada] | [descreva as alternativas] |
 
 ]
 
