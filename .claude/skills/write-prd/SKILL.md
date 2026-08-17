@@ -30,4 +30,6 @@ Considere essa etapa concluída quando o projeto estiver criado no Linear dentro
 
 Toda a informação reunida na etapa 1 agora deve ser organizada em um documento estruturado. Leia o arquivo [TEMPLATE.md](./references/TEMPLATE.md) e aplique as informações nesse template. Siga rigorosamente a estrutura e NÃO adicione ou remova seções ou informações.
 
-Considere essa etapa concluída quando o documento um documento chamado PRD estiver anexado no respectivo projeto no Linear.
+Após terminar, faça um resumo em bullet points e peça ao usuário para revisar e aprovar o documento. Uma vez aprovado, anexe o documento no Linear em uma aba chamada "PRD" e escolha o ícone `NotePad` em verde.
+
+Considere essa etapa concluída quando o documento estiver anexado no respectivo projeto no Linear.

@@ -7,7 +7,7 @@ description: Execute tarefas
 
 ### 1. Selecionar Tarefa
 
-Leia as tarefas no projeto do Linear e selecione a próxima disponível e de maior prioridade de acordo com o caminho crítico. Mova a tarefa selecionada para "In Progress".
+Leia as tarefas no projeto do Linear e selecione a próxima disponível e de maior prioridade de acordo com o caminho crítico. Mova a tarefa selecionada para "In Progress" e atribua o usuário a tarefa.
 
 Leia o conteúdo da tarefa selecionada, o PRD, a TechSpec e quaisquer arquivos de regras e skills relevantes para o escopo da tarefa.
 
@@ -15,7 +15,9 @@ Considere essa etapa concluída quando a tarefa estiver marcada como "In Progres
 
 ### 2. Preparar ambiente
 
-Crie uma worktree para a tarefa junto com uma branch chamada com o identificador da tarefa no Linear e tente executar o servidor e os containers Docker. Se receber um erro de porta em uso para o servidor HTTP, escolhe a próxima porta disponível na faixa `4000 - 4999`. Para containers Docker, escolha a próxima porta de acordo com a faixa do container (por exemplo, `5432-5999` para Postgres).
+Atualiza a branch da funcionalidade para buscar as últimas atualizações. Pegue somente o identificador principal da tarefa no Linear e crie uma branch apontando para a branch da funcionalidade (ex: `feature/signup` &lt;- `BAC-1`).
+
+Execute o servidor e os containers Docker. Se receber um erro de porta em uso para o servidor HTTP, escolhe a próxima porta disponível na faixa `4000 - 4999`. Para containers Docker, escolha a próxima porta de acordo com a faixa do container (por exemplo, `5432-5999` para Postgres).
 
 Execute as migrações quando necessário e faça todo o setup até ter um servidor HTTP responsível.
 
@@ -37,4 +39,4 @@ Considere essa etapa concluída quando todos os serviços iniciados não estiver
 
 ### 5. Reportar
 
-Com tudo concluído, faça o push das mudanças para o GitHub.
+Faça commits atômicos e faça e abra o PR no GitHub. NÃO altere o status da issue, deixe que o Linear sincronize o status de acordo com o estado do PR.
