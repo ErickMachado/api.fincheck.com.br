@@ -1,5 +1,10 @@
 # Code Standards
 
+## Qualidade
+
+- Nomes de variáveis, funções e classes devem estar em inglês;
+- NÃO adicione comentários explicando o que o código faz. O código de ser claro e autoexplicativo;
+
 ## Erros
 
 - NÃO crie erros customizados, sempre use o `Problem` para disparar erros conhecidos;
