@@ -22,8 +22,4 @@ Considere essa etapa concluída quando NÃO houver informações na zona cinzent
 
 Toda a informação reunida na etapa 1 agora deve ser organizada em um documento estruturado. Leia o arquivo [TEMPLATE.md](./references/TEMPLATE.md) e aplique as informações nesse template. Siga rigorosamente a estrutura e NÃO adicione seções ou informações, porém, Você pode esconder seções que não se aplicarem ao caso da funcionalidade.
 
-Considere essa etapa concluída quando o documento estiver salvo em `.specs/features/[nome]/spec.md`.
-
-### 3. Registro de Decisões
-
-Registre no formato de tabela em `.specs/DECISIONS.md` as decisões técnicas que afetam outras partes do projeto. Use o identificador `ENG-*` para cada uma e justifique o motivo pelo qual aquela decisão foi tomada, bem como alternativas consideradas.
+Considere essa etapa concluída quando um documento chamado `Spec` estiver anexado no respectivo projeto no Linear.

@@ -10,7 +10,7 @@ argument-hint: Descreva o que precisa ser feito
 
 ## Processo
 
-### 1. Pesquisa & Entrevista
+### 1. Pesquisa &amp; Entrevista
 
 O objetivo dessa etapa é reunir o máximo de informações sobre o que precisa ser feito. Principais usuários e fluxos, métricas, integrações externas, etc. NUNCA peça ao usuário para fornecer detalhes técnicos. Aspectos técnicos serão cobertos no documento de especificações técnica (TechSpec).
 
@@ -20,12 +20,14 @@ A partir dos critérios de aceitação, formule casos de teste para cobrir tais 
 
 Considere essa etapa concluída quando NÃO houver informações na zona cinzenta e existir um entendimento claro e mútuo sobre o que precisa ser construído e os motivos.
 
-### 2. Escrita
+### 2. Preparação
+
+Crie um projeto no Linear para centralizar as documentações do projeto. Crie uma breve descrição para o projeto (shot summary) e adicione um ícone (sem ser emoji) em verde que remeta a algo do projeto.
+
+Considere essa etapa concluída quando o projeto estiver criado no Linear dentro do time `Back-end`.
+
+### 3. Escrita
 
 Toda a informação reunida na etapa 1 agora deve ser organizada em um documento estruturado. Leia o arquivo [TEMPLATE.md](./references/TEMPLATE.md) e aplique as informações nesse template. Siga rigorosamente a estrutura e NÃO adicione ou remova seções ou informações.
 
-Considere essa etapa concluída quando o documento estiver salvo em `.specs/features/[slug]/prd.md`.
-
-### 3. Registro de Decisões
-
-Registre no formato de tabela em `.specs/DECISIONS.md` as decisões de negócio. Use o identificador `NEG-*` para cada uma e justifique o motivo pelo qual aquela decisão foi tomada, bem como alternativas consideradas.
+Considere essa etapa concluída quando o documento um documento chamado PRD estiver anexado no respectivo projeto no Linear.

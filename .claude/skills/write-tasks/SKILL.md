@@ -16,6 +16,6 @@ Considere essa etapa concluída quando tiver pleno entendimento sobre o que prec
 
 Toda a informação reunida na etapa 1 agora deve ser organizada em tarefas de escopo bem definido. Leia o arquivo [TEMPLATE.md](./references/TEMPLATE.md) e aplique as informações nesse template. Siga rigorosamente a estrutura e NÃO adicione seções ou informações, porém, Você pode esconder seções que não se aplicarem ao contexto da tarefa.
 
-Crie um caminho crítico das tarefas, evidenciando quais podem ser feitas em paralelo e quais as dependências entre elas.
+Crie um caminho crítico das tarefas usando os recursos `blocking` e `blocked by` do Linear para evidenciar quais podem ser feitas em paralelo e quais as dependências entre elas.
 
-Considere essa etapa concluída quando o documento estiver salvo em `.specs/features/[nome]/tasks.md`.
+Considere essa etapa concluída quando todas as tarefas que cobrem a funcionalidade estiverem criadas no Linear com suas dependências explícitas.
