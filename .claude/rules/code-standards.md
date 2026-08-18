@@ -45,6 +45,7 @@ if (age < MIN_AGE) {
 ```
 
 - Limite os parâmetros de funções a 3. Se mais parâmetros forem necessários, receba um objeto;
+- Não crie abstrações para bibliotecas de ID ou data;
 
 ## Datas
 

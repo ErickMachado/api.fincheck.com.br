@@ -13,6 +13,11 @@ Fincheck é uma API REST de código aberto para gerenciamento de finanças pesso
 ## 3. Comandos
 
 ```bash
+npm run format:check # Checa se os arquivos seguem as regras formatação
+npm run format:fix # Corrige erros de formatação em arquivos
+npm run lint:check # Checa se os arquivos seguem regras de código
+npm run lint:fix # Corrige arquivos que ferem as regras de código
 npm run start:dev # Executa o servidor em modo desenvolvimento (hot reload)
-npm run test:watch # Executa os testes automatizados
+npm run test # Executa os testes automatizados sem hot reload
+npm run test:watch # Executa os testes automatizados com hot reload
 ```

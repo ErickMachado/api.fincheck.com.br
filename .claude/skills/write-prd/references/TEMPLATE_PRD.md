@@ -32,9 +32,9 @@
 
 [a partir de cada história de usuário, derive um ou mais critérios de aceitação usando o formato Gherkin:
 
-| #    | Descrição                                                        | História de Usuário |
-| :--- | :--------------------------------------------------------------- | :------------------ |
-| CA-* | **Dado que** [condição], **quando** [ação], **então** [objetivo] | US-*                |
+| #    | Descrição                                            | História de Usuário |
+| :--- | :--------------------------------------------------- | :------------------ |
+| CA-* | Dado que [condição], quando [ação], então [objetivo] | US-*                |
 
 ]
 

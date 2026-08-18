@@ -18,9 +18,9 @@
 
 [liste quais arquivos serão criados ou modificados:
 
-| Caminho                | Camada             | Justificativa                     | Status             |
-| :--------------------- | :----------------- | :-------------------------------- | :----------------- |
-| `[caminho do arquivo]` | `[nome da camada]` | [o motivo da criação/modificação] | [Novo ou Alterado] |
+| Caminho                | Camada             | Descrição                                     | Status             |
+| :--------------------- | :----------------- | :-------------------------------------------- | :----------------- |
+| `[caminho do arquivo]` | `[nome da camada]` | [justifique a criação/modificação do arquivo] | [Novo ou Alterado] |
 
 ]
 
@@ -118,9 +118,9 @@ interface [nome] {
 
 [registre decisões de design da funcionalidade:
 
-| #         | Justificativa                      | Alternativas               |
-| :-------- | :--------------------------------- | :------------------------- |
-| `[DEC-*]` | [breve explicação sobre a decisão] | [descreva as alternativas] |
+| #       | Justificativa                      | Alternativas               |
+| :------ | :--------------------------------- | :------------------------- |
+| [DEC-*] | [breve explicação sobre a decisão] | [descreva as alternativas] |
 
 ]
 
@@ -128,9 +128,9 @@ interface [nome] {
 
 [Defina uma estratégia de testes de acordo com a criticidade da funcionalidade. Associe casos de teste a critérios de aceitação:
 
-| #        | Descrição               | Critérios de aceitação | Resultado esperado |
-| :------- | :---------------------- | :--------------------- | :----------------- |
-| `[TU-*]` | [nome do caso de teste] | `[CA-*]`               | [resultado]        |
+| #      | Descrição               | Critérios de aceitação | Resultado esperado |
+| :----- | :---------------------- | :--------------------- | :----------------- |
+| [TU-*] | [nome do caso de teste] | [CA-*]                 | [resultado]        |
 
 ]
 
