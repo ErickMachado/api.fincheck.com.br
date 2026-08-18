@@ -1,7 +1,7 @@
 ---
 name: write-techspec
 description: Transforme requisitos de produto em um plano técnico claro e pronto para implementação.
-argument-hint: ID ou nome do projeto no Linear
+argument-hint: Slug da funcionalidade
 ---
 
 ## Regras
@@ -10,18 +10,48 @@ argument-hint: ID ou nome do projeto no Linear
 
 ## Processo
 
-### 1. Contexto & Pesquisa
+### 1. Contexto &amp; Pesquisa
 
-O objetivo dessa etapa é reunir o máximo de informações sobre o que precisa ser feito. Leia o PRD fornecido, identifique as histórias de usuários e critérios de aceitação e verifique se há impedimentos técnicos para o que precisa ser feito. Leia também as regras do projeto em `.claude/rules/*.md` e o código afim de determinar o estado atual do projeto.
+#### O que deve ser feito:
 
-Antes de redigir o documento, faça pesquisas na web sobre o domínio do negócio e boas práticas relevantes. Explore alternativas e compare os pontos positivos e negativos de estratégias, ferramentas e bibliotecas para escolher o que melhor se encaixar ao momento do projeto e a funcionalidade sem depender do usuário. Caso a funcionalidade dependa de integrações com sistemas externos, leia a documentação da ferramenta ou API.
+Leia o PRD da funcionalidade e identifique histórias de usuários, critérios de aceite e integrações. Verifique se há impedimentos técnicos. Leia o código atual e regras de projeto em `.claude/rules`. Consulte também decisões relevantes em `.specs/LESSONS.md`.
 
-Considere essa etapa concluída quando NÃO houver informações na zona cinzenta e existir um entendimento claro e mútuo sobre o que precisa ser construído e os motivos.
+Faça pesquisas na web, compare pontos positivos e negativos de biliotecas, APIs e estratégias. Escolha o melhor caminho de acordo com as necessidades do projeto.
 
-### 2. Escrita
+Se integrações com sistemas de terceiros for necessário, leia a documentação e busque informações relevantes sobre a API, formatos de respostas, etc.
 
-Toda a informação reunida na etapa 1 agora deve ser organizada em um documento estruturado. Leia o arquivo [TEMPLATE.md](./references/TEMPLATE.md) e aplique as informações nesse template. Siga rigorosamente a estrutura e NÃO adicione seções ou informações, porém, Você pode esconder seções que não se aplicarem ao caso da funcionalidade.
+#### Objetivo:
 
-Após terminar, faça um breve resumo para o usuário. Anexe o documento no Linear em uma aba chamada "TechSpec" e escolha o ícone `Chip` em verde.
+Conseguir contexto sobre o que precisa ser feito, pesquisar boas práticas, comparar estratégias e escolher a mais alinhada aos critérios do PRD e estado atual do sistema.
 
-Considere essa etapa concluída quando o documento estiver anexado no respectivo projeto no Linear.
+#### Concluído quando:
+
+Todos os pontos do PRD forem explorados, bem como o entendimento de sistemas externos (se aplicável) e estratégias comuns.
+
+### 3. Preparação
+
+#### O que deve ser feito:
+
+Modifique o arquivo `.specs/LESSONS.md` e registre decisões de engenharia que afetam toda a arquitetura.
+
+#### Objetivo:
+
+Manter um registro global de decisões técnicas importantes para que possa servir de consulta no futuro para novas funcionalidades.
+
+#### Concluído quando:
+
+Todas as decisões técnicas relevantes estiverem registradas em `.specs/LESSONS.md`.
+
+### 4. Escrita
+
+#### O que deve ser feito:
+
+Leia o arquivo e `./references/TEMPLATE.md` e organize as informações coletadas no template.
+
+#### Objetivo:
+
+Criar um plano claro e executável sobre as mudanças que serão implementadas. Siga rigorosamente a estrutura e NÃO adicione seções ou informações. Entretanto, você pode esconder seções que não se aplicarem.
+
+#### Concluído quando:
+
+O conteúdo estiver salvo em `.specs/[slug]/design.md`.

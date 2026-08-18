@@ -22,6 +22,8 @@
 | `interfaces`  | `src/application/interfaces`  | Declara interfaces descrevendo como casos de uso interagem com dependências externas |
 | `usecases`    | `src/application/usecases`    | Implementações de casos de uso                                                       |
 
+> ⚠️ Crie diferentes pastas em `controllers` e `usecases` para agrupar recursos. Por exemplo: `/application/controllers/users`, `/application/usecases/users`, etc. 
+
 ---
 
 #### `domain`
@@ -40,6 +42,8 @@
 | `database` | `src/infra/database` | Implementações de conexão com o banco, repositórios e arquivos de migrações |
 | `docker`   | `src/infra/docker`   | Arquivos de compose e `Dockerfile`                                          |
 
+> ⚠️ Crie diferentes pastas para agrupar recursos. Por exemplo: `/infra/security`, `/infra/queue`, etc. 
+
 ---
 
 #### `main`
@@ -57,7 +61,6 @@
 | `integration` | `tests/integration` | Testes de API                                 |
 | `mocks`       | `tests/mocks`       | Dublês de teste e stubs                       |
 | `setup`       | `tests/setup`       | Classes utilitárias para testes de integração |
-| `unit`        | `tests/unit`        | Testes de unidade                             |
 
 ---
 
@@ -66,3 +69,9 @@
 | Arquivo           | Caminho                    | Responsabilidades                                                                                                |
 | :---------------- | :------------------------- | :--------------------------------------------------------------------------------------------------------------- |
 | `orchestrator.ts` | `src/main/orchestrator.ts` | Expõe métodos para iniciar ou para o servidor. Sobe serviços externos usando `testcontainer` e executa migrações |
+
+## Fluxo
+
+```
+Requisição HTTP → Controller → Caso de uso → Domínio (opcional) → Repositório (opcional) → Gateway (opcional) → Resposta HTTP
+```

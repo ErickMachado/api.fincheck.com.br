@@ -8,14 +8,42 @@ argument-hint: Slug da funcionalidade
 
 ### 1. Contexto
 
-O objetivo dessa etapa é reunir o máximo de informações sobre o que precisa ser feito. Leia o PRD e a TechSpec da funcionalidade, bem como as skills em `.claude/rules/*.md` e as skills em `.claude/skills/*.md`.
+#### O que deve ser feito:
 
-Considere essa etapa concluída quando tiver pleno entendimento sobre o que precisar ser construído.
+Leia o PRD e o arquivo de design da funcionalidade. Leia os arquivos de regras em `.claude/rules` e habilidades em `.claude/skills`.
+
+#### Objetivo:
+
+Reunir o máximo de informações sobre o que precisa ser construído e as regras do projeto.
+
+#### Concluído quando:
+
+Todas as histórias de usuários, critérios de aceitação e definições de design estiverem identificados.
 
 ### 2. Decomposição
 
-Toda a informação reunida na etapa 1 agora deve ser organizada em tarefas de escopo bem definido. Leia o arquivo [TEMPLATE.md](./references/TEMPLATE.md) e aplique as informações nesse template. Siga rigorosamente a estrutura e NÃO adicione seções ou informações, porém, Você pode esconder seções que não se aplicarem ao contexto da tarefa.
+#### O que deve ser feito:
 
-Crie um caminho crítico das tarefas usando os recursos `blocking` e `blocked by` do Linear para evidenciar quais podem ser feitas em paralelo e quais as dependências entre elas.
+Leia o arquivo `./references/TEMPLATE_TASK.md` e crie tarefas com escopos claros, dependências explícitas e testes próprios. Siga rigorosamente a estrutura e NÃO adicione seções ou informações. Entretanto, você pode esconder seções que não se aplicarem.
 
-Considere essa etapa concluída quando todas as tarefas que cobrem a funcionalidade estiverem criadas no Linear com suas dependências explícitas.
+#### Objetivo:
+
+Decompor uma especificação técnica em tarefas menos de escopo bem definido.
+
+#### Concluído quando:
+
+Todas as tarefas estiverem salvas em seus respectivos arquivos em `.specs/[slug]/tasks/[t*].md`.
+
+### 3. Análise de Dependências
+
+#### O que deve ser feito:
+
+Analise as tarefas criadas e identifique as dependências entre elas. Quebre em ondas de implementações. Leia o arquivo `./references/TEMPLATE_KANBAN.md` e aplique as informações nele. Siga rigorosamente a estrutura e NÃO adicione seções ou informações. Entretanto, você pode esconder seções que não se aplicarem.
+
+#### Objetivo:
+
+Deixar explícito a dependência entre as tarefas e quais devem ser executadas primeiro.
+
+#### Concluído quando:
+
+Todas as tarefas estiverem declaradas em `.specs/[slug]/tasks.md`.

@@ -1,40 +1,32 @@
+# Design: [nome da funcionalidade]
+
 ## Visão Geral
 
-[Faça uma breve introdução sobre o que será implementado. Não forneça detalhes técnicos já que eles serão detalhados ao longo do documento]
+[faça uma introdução de, no máximo, 2 parágrafos sobre o que será implementado. Não forneça detalhes técnicos já que eles serão detalhados ao longo do documento]
 
 ## Variáveis de Ambiente
 
-[Se aplicável, liste quais variáveis de ambiente serão modificadas ou adicionadas ao projeto. Siga o modelo:
+[Se aplicável, liste quais variáveis de ambiente serão modificadas ou adicionadas ao projeto:
 
-| Nome     | Formato                  | Descrição                                          | Sensível     | Status               |
-| :------- | :----------------------- | :------------------------------------------------- | :----------- | :------------------- |
-| `[nome]` | `[string, number, etc.]` | [Breve explicação sobre o que a variável controla] | [Sim ou Não] | [Nova ou Modificada] |
-
-]
-
-## Domínio
-
-[Se aplicável, liste quais entidades de domínio serão modificadas ou adicionadas ao projeto. NÃO liste implementações de outros módulos ou interfaces de repositórios. Siga o modelo:
-
-| Nome     | Arquivo     | Descrição                           | Status               |
-| :------- | :---------- | :---------------------------------- | :------------------- |
-| `[nome]` | `[caminho]` | [Breve explicação sobre a entidade] | [Nova ou Modificada] |
+| Nome     | Formato                  | Descrição                       | Sensível   | Status             |
+| :------- | :----------------------- | :------------------------------ | :--------- | :----------------- |
+| `[nome]` | `[string, number, etc.]` | [explique o que a variável faz] | [✅ ou ❌] | [Novo ou Alterado] |
 
 ]
 
-## Casos de uso
+## Arquivos
 
-[Se aplicável, liste quais casos de uso serão modificadas ou adicionadas ao projeto. NÃO liste implementações de outras camadas ou de controllers. Siga o modelo:
+[liste quais arquivos serão criados ou modificados:
 
-| Nome     | Arquivo     | Descrição                              | Status               |
-| :------- | :---------- | :------------------------------------- | :------------------- |
-| `[nome]` | `[caminho]` | [Breve explicação sobre o caso de uso] | [Nova ou Modificada] |
+| Caminho                | Camada             | Justificativa                     | Status             |
+| :--------------------- | :----------------- | :-------------------------------- | :----------------- |
+| `[caminho do arquivo]` | `[nome da camada]` | [o motivo da criação/modificação] | [Novo ou Alterado] |
 
 ]
 
 ## Contratos
 
-[Se aplicável, liste as interfaces de contrato que serão criadas ou modificadas. Liste todas as interfaces de quaisquer camadas. Siga o modelo:
+[se aplicável, liste as interfaces de contrato que serão criadas ou modificadas. Liste todas as interfaces de quaisquer camadas:
 
 ### `[Nome da interface]` - `[Caminho do arquivo]`
 
@@ -48,17 +40,17 @@ interface [nome] {
 
 ## Rotas
 
-[Se aplicável, liste as rotas que serão criadas ou alteradas e depois destrinche cada uma. Siga o modelo:
+[se aplicável, liste as rotas que serão criadas ou alteradas e depois destrinche cada uma:
 
-| Método          | Caminho               | Descrição                                        | Status               |
-| :-------------- | :-------------------- | :----------------------------------------------- | :------------------- |
-| `[Método HTTP]` | `[Nome da profissão]` | [Breve explicação sobre o propósito do endpoint] | [Nova ou Modificada] |
+| Método          | Caminho                 | Descrição                                 | Status             |
+| :-------------- | :---------------------- | :---------------------------------------- | :----------------- |
+| `[Método HTTP]` | `[caminho do endpoint]` | [Breve explicação sobre o que a rota faz] | [Novo ou Alterado] |
 
 ---
 
 ### `[Método] [Caminho]`
 
-[Breve explicação sobre o propósito do endpoint]
+[Breve explicação sobre o que a rota faz]
 
 #### Parâmetros de rota
 
@@ -94,51 +86,51 @@ interface [nome] {
 
 ## Banco de Dados
 
-[Se aplicável, liste todas as tabelas, colunas e índices que serão criados ou alterados. Siga o modelo:
+[se aplicável, liste tabelas, colunas e índices que serão criados ou alterados:
 
 ### `[schema]`.`[tabela]`
 
 #### Colunas
 
-| Nome     | Tipo                 | Obrigatória  | Descrição                                      | Status               |
-| :------- | :------------------- | :----------- | :--------------------------------------------- | :------------------- |
-| `[nome]` | `[Tipo do Postgres]` | [Sim ou Não] | [Breve explicação sobre o propósito da coluna] | [Nova ou Modificada] |
+| Nome     | Tipo                 | Obrigatória | Descrição                   | Status             |
+| :------- | :------------------- | :---------- | :-------------------------- | :----------------- |
+| `[nome]` | `[Tipo do Postgres]` | [✅ ou ❌]  | [Breve explicação a coluna] | [Novo ou Alterado] |
 
 #### Índices
 
-| Nome     | Tipo                    | Descrição                                      | Status               |
-| :------- | :---------------------- | :--------------------------------------------- | :------------------- |
-| `[nome]` | `[UNIQUE, CHECK, etc.]` | [Breve explicação sobre o propósito do índice] | [Nova ou Modificada] |
+| Nome     | Tipo                    | Descrição                         | Status             |
+| :------- | :---------------------- | :-------------------------------- | :----------------- |
+| `[nome]` | `[UNIQUE, CHECK, etc.]` | [Breve explicação sobre o índice] | [Novo ou Alterado] |
 
 ]
 
 ## Dependências
 
-[Se aplicável, liste os pacotes que vão precisar ser adicionados ao projeto e justique a razão. Siga o modelo:
+[se aplicável, liste os pacotes que serão adicionados ao projeto e justifique:
 
-| Pacote                   | Produção     | Versão                     | Descrição                                        | Status               |
-| :----------------------- | :----------- | :------------------------- | :----------------------------------------------- | :------------------- |
-| `[Nome canônico no npm]` | [Sim ou Não] | `[Versão a ser instalada]` | [Breve explicação sobre o propósito do endpoint] | [Nova ou Modificada] |
+| Pacote                   | Produção   | Versão     | Justificativa                     |
+| :----------------------- | :--------- | :--------- | :-------------------------------- |
+| `[nome canônico no npm]` | [✅ ou ❌] | `[versão]` | [Breve explicação sobre o pacote] |
 
 ]
 
 ## Decisões
 
-[Registre as principais decisões de escopo da funcionalidade. Use `DEC-*` para identificar cada uma. Siga o modelo:
+[registre decisões de design da funcionalidade:
 
-| ID        | Justificativa                                        | Alternativas               |
-| :-------- | :--------------------------------------------------- | :------------------------- |
-| `[DEC-*]` | [breve justificativa do porque a decisão foi tomada] | [descreva as alternativas] |
+| #         | Justificativa                      | Alternativas               |
+| :-------- | :--------------------------------- | :------------------------- |
+| `[DEC-*]` | [breve explicação sobre a decisão] | [descreva as alternativas] |
 
 ]
 
 ## Testes Automatizados
 
-[Defina uma estratégia de testes de acordo com a criticidade da funcionalidade. Use `TU-*` para identificar testes unitários e `TI-*` para os de integração. Associe cada teste aos critérios de aceitação (`CA-*`). Siga o modelo:
+[Defina uma estratégia de testes de acordo com a criticidade da funcionalidade. Associe casos de teste a critérios de aceitação:
 
-| ID       | Descrição               | Critérios de aceitação | Resultado esperado |
+| #        | Descrição               | Critérios de aceitação | Resultado esperado |
 | :------- | :---------------------- | :--------------------- | :----------------- |
-| `[TU-*]` | [nome do caso de teste] | [CA-*]                 | [resultado]        |
+| `[TU-*]` | [nome do caso de teste] | `[CA-*]`               | [resultado]        |
 
 ]
 

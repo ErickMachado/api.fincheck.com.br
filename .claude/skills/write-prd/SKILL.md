@@ -1,7 +1,7 @@
 ---
 name: write-prd
 description: Transforme pedidos de funcionalidade não estruturados em PRDs claros.
-argument-hint: Descreva o que precisa ser feito
+argument-hint: Descreva o que deve ser feito e os resultados esperados
 ---
 
 ## Regras
@@ -12,24 +12,42 @@ argument-hint: Descreva o que precisa ser feito
 
 ### 1. Pesquisa &amp; Entrevista
 
-O objetivo dessa etapa é reunir o máximo de informações sobre o que precisa ser feito. Principais usuários e fluxos, métricas, integrações externas, etc. NUNCA peça ao usuário para fornecer detalhes técnicos. Aspectos técnicos serão cobertos no documento de especificações técnica (TechSpec).
+#### O que deve ser feito:
 
-Antes de redigir o documento, faça pesquisas na web sobre o domínio do negócio e informações relevantes ao que o usuário quer construir. O que quer que o usuário diga, vá a fundo e veja se isso pode ser traduzido em uma história do usuário ou critério de aceitação. Explore alternativas, faça sugestões e, junto do usuário, escolha a melhor estratégia a ser seguida.
+Receba o pedido do usuário e faça uma breve pesquisa na web para coletar informações sobre o domínio do negócio, concorrentes e abordagens relevantes ao que deve ser construído. NÃO peça para o usuários fornecer detalhes técnicos e NÃO se preocupe com eles. Entreviste o usuário incessantemente até chegar ao fundo de conceitos e ideias.
 
-A partir dos critérios de aceitação, formule casos de teste para cobrir tais critérios.
+#### Objetivo:
 
-Considere essa etapa concluída quando NÃO houver informações na zona cinzenta e existir um entendimento claro e mútuo sobre o que precisa ser construído e os motivos.
+Reunir o máximo de contexto e jogar luz em ideias e conceitos que estão na zona cinzenta.
+
+#### Concluído quando:
+
+Houver um entendimento mútuo e escopo fechado sobre o fluxo da funcionalidade, o que precisa ser feito e o que ficará fora.
 
 ### 2. Preparação
 
-Crie um projeto no Linear para centralizar as documentações do projeto. Crie uma breve descrição para o projeto (shot summary) e adicione um ícone (sem ser emoji) em verde que remeta a algo do projeto.
+#### O que deve ser feito:
 
-Considere essa etapa concluída quando o projeto estiver criado no Linear dentro do time `Back-end`.
+Modifique (ou crie se não existir) o arquivo `.specs/LESSONS.md`. Registre nele decisões de negócio de escopo global. 
+
+#### Objetivo:
+
+Manter um registro de decisões de negócio de escopo global para servir de consulta em futuras decisões.
+
+#### Concluído quando:
+
+Todas as decisões globais estiverem registradas em `.specs/LESSONS.md`.
 
 ### 3. Escrita
 
-Toda a informação reunida na etapa 1 agora deve ser organizada em um documento estruturado. Leia o arquivo [TEMPLATE.md](./references/TEMPLATE.md) e aplique as informações nesse template. Siga rigorosamente a estrutura e NÃO adicione ou remova seções ou informações.
+#### O que deve ser feito:
 
-Após terminar, faça um resumo em bullet points e anexe o documento no Linear em uma aba chamada "PRD" e com o ícone `NotePad` em verde.
+Leia o arquivo `./references/TEMPLATE_PRD.md` e aplique as informações nele. Siga rigorosamente a estrutura e NÃO adicione ou remova seções ou informações. Entretanto, você pode esconder seções que não se aplicarem ao projeto.
 
-Considere essa etapa concluída quando o documento estiver anexado no respectivo projeto no Linear.
+#### Objetivo:
+
+Tendo claro o que precisa ser construído, é hora de consolidar todo o contexto em um PRD. Documento que servirá de base para todas as futuras fases do projeto.
+
+#### Concluído quando:
+
+O documento estiver salvo em `.specs/[slug]/prd.md`.
