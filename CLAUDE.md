@@ -21,3 +21,11 @@ npm run start:dev # Executa o servidor em modo desenvolvimento (hot reload)
 npm run test # Executa os testes automatizados sem hot reload
 npm run test:watch # Executa os testes automatizados com hot reload
 ```
+
+## 4. Regras
+
+- [api-standards.md](.claude/rules/api-standards.md)
+- [bash-standards.md](.claude/rules/bash-standards.md)
+- [code-standards.md](.claude/rules/code-standards.md)
+- [folder-standards.md](.claude/rules/folder-standards.md)
+- [testing-standards.md](.claude/rules/testing-standards.md)
