@@ -4,8 +4,9 @@ import { StatusCode } from '@common/http/statuses'
 type Details = Readonly<{
   title: string
   detail: string
-  status: StatusCode
 }>
+
+type ProblemDetails = Details & Readonly<{ status: StatusCode }>
 
 export class Problem extends Error {
   private readonly title: string
@@ -14,7 +15,7 @@ export class Problem extends Error {
   private readonly errors: Map<string, string>
   private instance?: string
 
-  private constructor(details: Details) {
+  private constructor(details: ProblemDetails) {
     super()
 
     this.name = 'Problem'
@@ -40,6 +41,14 @@ export class Problem extends Error {
       instance: this.instance,
       ...(errors.length > 0 ? { errors } : {})
     }
+  }
+
+  public static badRequest(details: Details): Problem {
+    return new Problem({ ...details, status: StatusCode.BadRequest })
+  }
+
+  public static conflict(details: Details): Problem {
+    return new Problem({ ...details, status: StatusCode.Conflict })
   }
 
   public static fromZod(error: ZodError): Problem {
