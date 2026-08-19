@@ -19,6 +19,20 @@
 
 ## Engenharia
 
-| #     | Contexto                                                                                     | Origem                 |
-| :---- | :------------------------------------------------------------------------------------------- | :--------------------- |
-| ENG-1 | O Resend é o provedor de e-mail transacional do produto e todo envio de e-mail passa por ele | `cadastro-de-usuarios` |
+| #      | Contexto                                                                                                                                                                                                              | Origem                 |
+| :----- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------- |
+| ENG-1  | O Resend é o provedor de e-mail transacional do produto e é acessado pelo relay SMTP, não pela API HTTP. A aplicação não depende do SDK de nenhum provedor: trocar de provedor é trocar as variáveis do grupo `SMTP_` | `cadastro-de-usuarios` |
+| ENG-2  | O PostgreSQL é acessado pelo driver `pg` com SQL escrito à mão nos repositórios. O produto não adota ORM nem query builder                                                                                            | `cadastro-de-usuarios` |
+| ENG-3  | O esquema do banco é versionado com `node-pg-migrate`, com migrações em arquivos `.sql` em `src/infra/database/migrations` e prefixo de timestamp gerado pela própria ferramenta                                      | `cadastro-de-usuarios` |
+| ENG-4  | Escritas que envolvem mais de uma tabela correm em transação explícita, aberta pelo helper `Database.transaction`, que concentra `BEGIN`, `COMMIT` e `ROLLBACK` em um único ponto da camada `infra`                   | `cadastro-de-usuarios` |
+| ENG-5  | Identificadores são ULID gerados na entidade de domínio com `ulidx` e persistidos em `CHAR(26)`                                                                                                                       | `cadastro-de-usuarios` |
+| ENG-6  | Metadados temporais são persistidos em `TIMESTAMPTZ` e gerados em UTC na entidade de domínio                                                                                                                          | `cadastro-de-usuarios` |
+| ENG-7  | Senhas são armazenadas como hash Argon2id gerado pelo `@node-rs/argon2`, com 19 MiB de memória, 2 iterações e paralelismo 1                                                                                           | `cadastro-de-usuarios` |
+| ENG-8  | Controllers implementam a interface `Controller` e não conhecem o Fastify; a tradução é feita por um adaptador em `src/main/adapters`                                                                                 | `cadastro-de-usuarios` |
+| ENG-9  | Respostas de sucesso sem informação a devolver usam `204 No Content`, sem corpo e sem envelope                                                                                                                        | `cadastro-de-usuarios` |
+| ENG-10 | Testes de integração sobem PostgreSQL e MailCatcher com Testcontainers pelo orquestrador, iniciados no `beforeAll` da suíte, derrubados no `afterAll` e com o estado limpo no `beforeEach`                            | `cadastro-de-usuarios` |
+| ENG-11 | E-mails enviados nos testes são capturados pelo MailCatcher e assertados pela sua API HTTP, mantendo o gateway SMTP real e o template dentro do caminho testado                                                       | `cadastro-de-usuarios` |
+| ENG-12 | A cobertura mínima de 90% sobre `src` é verificada pelo `@vitest/coverage-v8` e configurada como limiar no `vitest.config.ts`                                                                                         | `cadastro-de-usuarios` |
+| ENG-13 | Templates de e-mail são componentes react-email em TSX estilizados pelo componente `Tailwind`, renderizados na camada `infra` em HTML com estilos embutidos e em texto puro a partir do mesmo componente              | `cadastro-de-usuarios` |
+| ENG-14 | Objetos de valor do domínio ficam em `src/domain/value-objects`, separados das entidades em `src/domain/entities`                                                                                                     | `cadastro-de-usuarios` |
+| ENG-15 | Colunas de chave estrangeira são nomeadas `<entidade>_id_fk` (ex.: `user_id_fk`), preservando o `_id` dos demais identificadores; a propriedade correspondente na classe de domínio mantém o nome `<entidade>Id`      | `cadastro-de-usuarios` |
