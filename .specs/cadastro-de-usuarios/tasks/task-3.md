@@ -4,11 +4,11 @@ Os controllers da camada `application` não podem conhecer o Fastify, e o único
 
 ## Subtarefas
 
-- [ ] Criar `src/common/http/controller.ts` declarando os tipos `HTTPRequest` (com `body`, `params` e `query` como `unknown`) e `HTTPResponse` (com `body` opcional e `status`) e a interface `Controller`
-- [ ] Adicionar `NoContent = 204` ao enum `StatusCode` em `src/common/http/statuses.ts`
-- [ ] Adicionar a fábrica estática `Problem.from` em `src/common/http/problem.ts`, recebendo `title`, `detail` e `status` em um objeto e devolvendo um `Problem`
-- [ ] Criar `src/main/adapters/controller.ts` convertendo `FastifyRequest` em `HTTPRequest`, chamando `handle` e respondendo pelo `FastifyReply` com o status devolvido, sem enviar corpo quando o status for `204`
-- [ ] Executar `npm run format:check` e `npm run lint:check` e corrigir o que apontarem
+- [x] Criar `src/common/http/controller.ts` declarando os tipos `HTTPRequest` (com `body`, `params` e `query` como `unknown`) e `HTTPResponse` (com `body` opcional e `status`) e a interface `Controller`
+- [x] Adicionar `NoContent = 204` ao enum `StatusCode` em `src/common/http/statuses.ts`
+- [x] Adicionar a fábrica estática `Problem.from` em `src/common/http/problem.ts`, recebendo `title`, `detail` e `status` em um objeto e devolvendo um `Problem`
+- [x] Criar `src/main/adapters/controller.ts` convertendo `FastifyRequest` em `HTTPRequest`, chamando `handle` e respondendo pelo `FastifyReply` com o status devolvido, sem enviar corpo quando o status for `204`
+- [x] Executar `npm run format:check` e `npm run lint:check` e corrigir o que apontarem
 
 ## Critérios de Aceitação
 
