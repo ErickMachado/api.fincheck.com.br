@@ -4,14 +4,14 @@ O `UserRepository` é o único ponto que sabe como a conta e o token chegam ao P
 
 ## Subtarefas
 
-- [ ] Criar `src/infra/database/repositories/user.ts` implementando `UserRepository` e recebendo a `Database` pelo construtor
-- [ ] Implementar `create` em transação: inserir em `users` com `ON CONFLICT (email) DO NOTHING RETURNING id` e, quando o `INSERT` não devolver linha, encerrar sem escrever e devolver `false`
-- [ ] Completar `create` inserindo a linha em `user_activation_tokens` quando a conta foi criada, reaproveitando o `created_at` da conta, e devolver `true`
-- [ ] Implementar `findActivationToken(value)` consultando `user_activation_tokens` pelo valor exato do token e devolvendo `UserActivationToken.restore(...)` ou `null`
-- [ ] Implementar `activateUser(token)` em transação: atualizar `used_at` com a guarda `used_at IS NULL` e `RETURNING user_id_fk`, devolvendo `false` quando nenhuma linha voltar
-- [ ] Completar `activateUser` atualizando `verified_at` e `updated_at` da conta devolvida pela primeira atualização e devolvendo `true`
-- [ ] Traduzir erros do PostgreSQL para `Problem` com `try-catch`, permitido apenas nesta camada
-- [ ] Executar `npm run format:check` e `npm run lint:check` e corrigir o que apontarem
+- [x] Criar `src/infra/database/repositories/user.ts` implementando `UserRepository` e recebendo a `Database` pelo construtor
+- [x] Implementar `create` em transação: inserir em `users` com `ON CONFLICT (email) DO NOTHING RETURNING id` e, quando o `INSERT` não devolver linha, encerrar sem escrever e devolver `false`
+- [x] Completar `create` inserindo a linha em `user_activation_tokens` quando a conta foi criada, reaproveitando o `created_at` da conta, e devolver `true`
+- [x] Implementar `findActivationToken(value)` consultando `user_activation_tokens` pelo valor exato do token e devolvendo `UserActivationToken.restore(...)` ou `null`
+- [x] Implementar `activateUser(token)` em transação: atualizar `used_at` com a guarda `used_at IS NULL` e `RETURNING user_id_fk`, devolvendo `false` quando nenhuma linha voltar
+- [x] Completar `activateUser` atualizando `verified_at` e `updated_at` da conta devolvida pela primeira atualização e devolvendo `true`
+- [x] Traduzir erros do PostgreSQL para `Problem` com `try-catch`, permitido apenas nesta camada
+- [x] Executar `npm run format:check` e `npm run lint:check` e corrigir o que apontarem
 
 ## Critérios de Aceitação
 
