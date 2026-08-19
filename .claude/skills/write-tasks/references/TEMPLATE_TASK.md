@@ -1,4 +1,4 @@
-# [id]: [título]
+# [TASK-*]: [título]
 
 [descreva em um parágrafo o contexto e objetivo da tarefa]
 
@@ -14,8 +14,7 @@
 
 [liste os IDs dos critérios relacionados a tarefa, sem duplicar descrições:
 
-- `CA-01`
-- `CA-02`
+- CA-*
 
 ]
 
@@ -39,7 +38,7 @@
 
 ## [liste os IDs dos testes mapeados para essa tarefa:
 
-- [ ] `TU-01`: [nome]
+- [ ] TU-*: [nome]
 
 ]
 

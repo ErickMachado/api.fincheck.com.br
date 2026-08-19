@@ -61,7 +61,7 @@ test('Return 204 with empty body', () => {
 - Os testes devem ser independentes e não pode depender de ordem de execução ou estado criado por outro teste;
 - Os testes devem ser consistentes ao serem executados repetidas vezes. Não dependa de horário atual, números aleatórios ou chamadas externas;
 - Para testes de integração, sempre use o orquestrador para lidar com a execução/interrupção do servidor, banco de dados, migrações, etc. Esse tipo de comportamento NÃO deve estar dentro de arquivos de teste (`.spec.ts`);
-- Crie métodos utilitários no orquestrador para tarefas como sign up, sign in, etc.
+- Crie métodos utilitários no orquestrador para tarefas como sign up, sign in, etc.;
 - Para testes de integração, SEMPRE declare na descrição da suíte qual rota está sendo testada:
 
 ❌ Não faça:
@@ -78,3 +78,4 @@ describe('POST /v1/users', () => {})
 
 - SEMPRE faça um stub para chamadas a serviços externos (ex: API do GitHub);
 - NÃO use valores fixos para dados de entrada, use um pacote que gera dados de forma aleatória;
+- Inicie o servidor no hook `beforeAll`, pare no `afterAll` e limpe o banco `beforeEach`;

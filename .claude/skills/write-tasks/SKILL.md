@@ -1,49 +1,45 @@
 ---
 name: write-tasks
-description: Decomponha especificações técnicas em tarefas de escopo bem definido.
+description: Cria tarefas técnicas de escopo bem definido analisa a dependência entre elas. Use quando o usuário quiser decompor uma especificação técnica.
 argument-hint: Slug da funcionalidade
 ---
 
+## Objetivo
+
+Estruturar solicitações de funcionalidades em PRDs claros, acionáveis e de escopo bem definido.
+
+## Use para
+
+- Criar tarefas técnicas;
+- Criar o caminho crítico entre tarefas;
+- Dividir a execução das tarefas em ondas;
+
+## NÃO use para
+
+- Executar as tarefas;
+- Editar documentos;
+
+## Regras
+
+- Todos os logs, perguntas e respostas devem estar em PT-BR;
+- Não crie tarefas que não estejam dentro do escopo do PRD e TechSpec;
+- Evite linguagem vaga;
+- Toda tarefa deve ter o escopo bem definido e suas dependências explícitas;
+- Siga rigorosamente o template `./references/TEMPLATE_TASK.md` e NÃO altere sua estrutura;
+- Siga rigorosamente o template `./references/TEMPLATE_KANBAN.md` e NÃO altere sua estrutura;
+
+## Entrada
+
+O slug de uma funcionalidade.
+
+## Saída esperada
+
+- Documento markdown salvo em `.specs/[slug]/tasks.md`;
+- Documento markdown salvo em `.specs/[slug]/tasks/task-*.md`;
+
 ## Processo
 
-### 1. Contexto
-
-#### O que deve ser feito:
-
-Leia o PRD e o arquivo de design da funcionalidade. Leia os arquivos de regras em `.claude/rules` e habilidades em `.claude/skills`.
-
-#### Objetivo:
-
-Reunir o máximo de informações sobre o que precisa ser construído e as regras do projeto.
-
-#### Concluído quando:
-
-Todas as histórias de usuários, critérios de aceitação e definições de design estiverem identificados.
-
-### 2. Decomposição
-
-#### O que deve ser feito:
-
-Leia o arquivo `./references/TEMPLATE_TASK.md` e crie tarefas com escopos claros, dependências explícitas e testes próprios. Siga rigorosamente a estrutura e NÃO adicione seções ou informações. Entretanto, você pode esconder seções que não se aplicarem.
-
-#### Objetivo:
-
-Decompor uma especificação técnica em tarefas menos de escopo bem definido.
-
-#### Concluído quando:
-
-Todas as tarefas estiverem salvas em seus respectivos arquivos em `.specs/[slug]/tasks/[t*].md`.
-
-### 3. Análise de Dependências
-
-#### O que deve ser feito:
-
-Analise as tarefas criadas e identifique as dependências entre elas. Quebre em ondas de implementações. Leia o arquivo `./references/TEMPLATE_KANBAN.md` e aplique as informações nele. Siga rigorosamente a estrutura e NÃO adicione seções ou informações. Entretanto, você pode esconder seções que não se aplicarem.
-
-#### Objetivo:
-
-Deixar explícito a dependência entre as tarefas e quais devem ser executadas primeiro.
-
-#### Concluído quando:
-
-Todas as tarefas estiverem declaradas em `.specs/[slug]/tasks.md`.
+1. Leia o PRD e a TechSpec. Identifique histórias de usuários e critérios de aceitação;
+2. Leia as regras do projeto em `.claude/rules` e as skills `.claude/skills`;
+3. Decomponha cada tarefa em seu próprio arquivo;
+4. Crie o caminho crítico entre as tarefas e divida a execução em ondas;

@@ -46,6 +46,19 @@ if (age < MIN_AGE) {
 
 - Limite os parâmetros de funções a 3. Se mais parâmetros forem necessários, receba um objeto;
 - Não crie abstrações para bibliotecas de ID ou data;
+- Siglas devem estar em caixa alta:
+
+❌ Não faça:
+
+```typescript
+type HttpRequest = {}
+```
+
+✅ Faça:
+
+```typescript
+type HTTPRequest = {}
+```
 
 ## Identificadores
 
@@ -62,3 +75,85 @@ if (age < MIN_AGE) {
 
 - NÃO crie erros customizados, sempre use o `Problem` para disparar erros conhecidos;
 - O uso de `try-catch` só é permitido em classes da camada `infra` para tradução de erros externos para HTTP (ex: Erro `23505` do PostgreSQL para `Problem`);
+
+## Variáveis de Ambiente
+
+- Sempre priorize configurações granulares:
+
+❌ Não faça:
+
+```
+DATABASE_URL="postgres://local_user:local_password@localhost:5432/local_db?sslmode=disable"
+```
+
+✅ Faça:
+
+```
+POSTGRES_USER="local_user"
+POSTGRES_PASSWORD="local_password"
+POSTGRES_HOST="localhost"
+POSTGRES_PORT="5432"
+POSTGRES_DATABASE="local_db"
+POSTGRES_SSL="false"
+```
+
+- Agrupe variáveis por contexto e pule uma linha entre cada grupo:
+
+❌ Não faça:
+
+```
+APP_ENV="development"
+APP_HOST="127.0.0.1"
+APP_PORT="4000"
+POSTGRES_USER="local_user"
+POSTGRES_PASSWORD="local_password"
+POSTGRES_HOST="localhost"
+POSTGRES_PORT="5432"
+POSTGRES_DATABASE="local_db"
+POSTGRES_SSL="false"
+```
+
+✅ Faça:
+
+```
+APP_ENV="development"
+APP_HOST="127.0.0.1"
+APP_PORT="4000"
+
+POSTGRES_USER="local_user"
+POSTGRES_PASSWORD="local_password"
+POSTGRES_HOST="localhost"
+POSTGRES_PORT="5432"
+POSTGRES_DATABASE="local_db"
+POSTGRES_SSL="false"
+```
+
+## Classes de domínio
+
+- Organize as propriedades da classe na order `ID da entidades -&gt; ID de outras entidades -&gt; propriedades em ordem alfabética -&gt; metadados`:
+
+❌ Não faça:
+
+```typescript
+class {
+  public readonly createdAt: Date
+  public readonly id: string
+  public slug: string
+  public title: string
+  public updatedAt: Date
+}
+```
+
+✅ Faça:
+
+```typescript
+class {
+  public readonly id: string
+  public slug: string
+  public title: string
+  public readonly createdAt: Date
+  public updatedAt: Date
+}
+```
+
+- Propriedades que nunca sofrem atualizações devem ser marcadas como `readonly`;

@@ -17,6 +17,8 @@ POST /users
 POST /v1/users
 ```
 
+- Siga o princípio de interface uniforme para nomear rotas;
+
 ## Respostas
 
 - Todo objeto JSON deve ter suas chaves serializadas em `snake_case`;
