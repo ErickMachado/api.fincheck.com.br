@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
+    "jsx": "react-jsx",
     "lib": [
+      "DOM",
       "ES2024",
       "ESNext.Array",
       "ESNext.Collection",
@@ -12,8 +14,12 @@
     "module": "NodeNext",
     "moduleResolution": "Node16",
     "paths": {
+      "@application/*": ["./src/application/*"],
       "@common/*": ["./src/common/*"],
-      "@main/*": ["./src/main/*"]
+      "@domain/*": ["./src/domain/*"],
+      "@infra/*": ["./src/infra/*"],
+      "@main/*": ["./src/main/*"],
+      "@tests/*": ["./tests/*"]
     },
     "skipLibCheck": true,
     "strict": true,
