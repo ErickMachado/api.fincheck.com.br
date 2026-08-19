@@ -1,53 +1,55 @@
 ---
 name: write-prd
-description: Transforme pedidos de funcionalidade não estruturados em PRDs claros.
-argument-hint: Descreva o que deve ser feito e os resultados esperados
+description: Transforma solicitações não estruturadas de novas funcionalidades ou alterações em funcionalidades existentes em um documento de requisitos do produto (PRD). Use quando o usuário quiser adicionar, modificar ou especificar funcionalidades de um produto ou projeto.
+argument-hint: Descreva o que precisa ser feito e os comportamentos e resultados esperados
 ---
+
+## Objetivo
+
+Estruturar solicitações de funcionalidades em PRDs claros, acionáveis e de escopo bem definido.
+
+## Use para
+
+- Especificar mudanças de comportamentos em funcionalidades existentes;
+- Especificar de novas funcionalidades;
+- Editar PRDs em andamento ou finalizados
+
+## NÃO use para
+
+- Especificar mudanças técnicas;
+- Editar outros tipos de documentos;
 
 ## Regras
 
-- Faça perguntas e responda o usuário em PT-BR;
+- Todos os logs, perguntas e respostas devem estar em PT-BR;
+- Não invente requisitos;
+- Preserve a intenção original do usuário;
+- Evite linguagem vaga;
+- NÃO presuma e NÃO solicite detalhes técnicos ao usuário;
+- NÃO se preocupe com código;
+- Pergunte só o que for necessário;
+- Todo critério de aceitação precisa ser testável e verificável;
+- Siga rigorosamente o template `./references/TEMPLATE_PRD.md` e NÃO altere sua estrutura;
+- Siga rigorosamente o template `./references/TEMPLATE_DECISIONS.md` para registrar decisões de escopo global e NÃO altere sua estrutura;
+
+## Entrada
+
+Um texto de alguns parágrafos descrevendo uma funcionalidade e seus comportamentos.
+
+## Saída esperada
+
+Documento markdown salvo em `.specs/[slug]/prd.md` contendo toda a especificação gerada.
 
 ## Processo
 
-### 1. Pesquisa &amp; Entrevista
-
-#### O que deve ser feito:
-
-Receba o pedido do usuário e faça uma breve pesquisa na web para coletar informações sobre o domínio do negócio, concorrentes e abordagens relevantes ao que deve ser construído. NÃO peça para o usuários fornecer detalhes técnicos e NÃO se preocupe com eles. Entreviste o usuário incessantemente até chegar ao fundo de conceitos e ideias.
-
-#### Objetivo:
-
-Reunir o máximo de contexto e jogar luz em ideias e conceitos que estão na zona cinzenta.
-
-#### Concluído quando:
-
-Houver um entendimento mútuo e escopo fechado sobre o fluxo da funcionalidade, o que precisa ser feito e o que ficará fora.
-
-### 2. Preparação
-
-#### O que deve ser feito:
-
-Modifique (ou crie se não existir) o arquivo `.specs/LESSONS.md`. Registre nele decisões de negócio de escopo global. 
-
-#### Objetivo:
-
-Manter um registro de decisões de negócio de escopo global para servir de consulta em futuras decisões.
-
-#### Concluído quando:
-
-Todas as decisões globais estiverem registradas em `.specs/LESSONS.md`.
-
-### 3. Escrita
-
-#### O que deve ser feito:
-
-Leia o arquivo `./references/TEMPLATE_PRD.md` e aplique as informações nele. Siga rigorosamente a estrutura e NÃO adicione ou remova seções ou informações. Entretanto, você pode esconder seções que não se aplicarem ao projeto.
-
-#### Objetivo:
-
-Tendo claro o que precisa ser construído, é hora de consolidar todo o contexto em um PRD. Documento que servirá de base para todas as futuras fases do projeto.
-
-#### Concluído quando:
-
-O documento estiver salvo em `.specs/[slug]/prd.md`.
+1. Identifique a funcionalidade solicitada;
+2. Identifique o problema que deve ser resolvido;
+3. Leia as decisões de produto de escopo global em `.specs/DECISIONS.md`;
+4. Pesquise sobre o domínio do negócio;
+5. Identifique personas afetadas;
+6. Determine o comportamento esperado;
+7. Decomponha comportamentos em histórias de usuários;
+8. Decomponha histórias de usuários em critérios de aceitação;
+9. Detecte lacunas ou ambiguidades;
+10. Produza o documento;
+11. Registre decisões de produto de escopo global em `.specs/DECISIONS.md`;

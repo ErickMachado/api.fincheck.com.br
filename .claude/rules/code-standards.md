@@ -47,11 +47,16 @@ if (age < MIN_AGE) {
 - Limite os parâmetros de funções a 3. Se mais parâmetros forem necessários, receba um objeto;
 - Não crie abstrações para bibliotecas de ID ou data;
 
+## Identificadores
+
+- Identificadores da entidade na classe de domínio;
+- SEMPRE use ULID para gerar IDs;
+
 ## Datas
 
-- Metadados de sistema devem estar em UTC;
-- Para informações dependentes do horário local do usuário, salve o timezone do usuário em um campo separado;
-- Use uma biblioteca confiável para datas ao invés de depender da classe nativa do JavaScript;
+- Metadados de sistema devem estar em UTC no formato RFC 8601;
+- Metadados devem ser gerados na classe de domínio;
+- Para informações dependentes da timezone do usuário (como transações), a timezone deve ser salva em um campo separado;
 
 ## Erros
 
