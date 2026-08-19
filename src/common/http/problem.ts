@@ -42,6 +42,10 @@ export class Problem extends Error {
     }
   }
 
+  public static from(details: Details): Problem {
+    return new Problem(details)
+  }
+
   public static fromZod(error: ZodError): Problem {
     const problem = new Problem({
       title: 'Request validation failed',
