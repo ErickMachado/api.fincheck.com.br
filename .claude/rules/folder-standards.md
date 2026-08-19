@@ -28,10 +28,11 @@
 
 #### `domain`
 
-| Diretório      | Caminho                   | Descrição                                      |
-| :------------- | :------------------------ | :--------------------------------------------- |
-| `entities`     | `src/domain/entities`     | Implementações das entidades de domínio        |
-| `repositories` | `src/domain/repositories` | Declarações de interfaces para acesso ao dados |
+| Diretório       | Caminho                    | Descrição                                                        |
+| :-------------- | :------------------------- | :--------------------------------------------------------------- |
+| `entities`      | `src/domain/entities`      | Implementações das entidades de domínio                          |
+| `value-objects` | `src/domain/value-objects` | Acomoda objetos de valores que possuem validações mais rigorosas |
+| `repositories`  | `src/domain/repositories`  | Declarações de interfaces para acesso ao dados                   |
 
 ---
 
@@ -56,11 +57,12 @@
 
 ### `tests`
 
-| Camada        | Caminho             | Descrição                                     |
-| :------------ | :------------------ | :-------------------------------------------- |
-| `integration` | `tests/integration` | Testes de API                                 |
-| `mocks`       | `tests/mocks`       | Dublês de teste e stubs                       |
-| `setup`       | `tests/setup`       | Classes utilitárias para testes de integração |
+| Pasta         | Caminho                  | Descrição                                             |
+| :------------ | :----------------------- | :---------------------------------------------------- |
+| `integration` | `tests/integration`      | Acomoda testes de integração                          |
+| `api`         | `testes/integration/api` | Acomoda os testes blackbox da API                     |
+| `mocks`       | `tests/mocks`            | Dublês de teste e stubs                               |
+| `setup`       | `tests/setup`            | Acomoda classes utilitárias para testes de integração |
 
 ---
 
