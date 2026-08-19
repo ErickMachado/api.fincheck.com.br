@@ -8,11 +8,11 @@ A implementação é dividida em 6 ondas e 13 tarefas. A onda 1 estabelece a fun
 | :------ | :------------------------------------------------------------------------------- | :-------------- | -------------------------------------- |
 | TASK-1  | Fundação do projeto: dependências, apelidos de módulo e configuração de ambiente | ✅ Concluído    |                                        |
 | TASK-2  | Conexão com o PostgreSQL e migrações do esquema                                  | ✅ Concluído    | TASK-1                                 |
-| TASK-3  | Núcleo HTTP: contrato de controller, `204 No Content` e adaptador do Fastify     | 🔄 Em Progresso | TASK-1                                 |
+| TASK-3  | Núcleo HTTP: contrato de controller, `204 No Content` e adaptador do Fastify     | ✅ Concluído    | TASK-1                                 |
 | TASK-4  | Domínio: `Email`, `User`, `UserActivationToken` e o contrato `UserRepository`    | ✅ Concluído    | TASK-1                                 |
 | TASK-5  | Repositório de usuários em SQL                                                   | ✏️ Não Iniciado | TASK-2, TASK-4                         |
-| TASK-6  | Derivação de hash de senha com Argon2id                                          | 🔄 Em Progresso | TASK-1                                 |
-| TASK-7  | Template do e-mail de ativação e gateway SMTP                                    | ✏️ Não Iniciado | TASK-1                                 |
+| TASK-6  | Derivação de hash de senha com Argon2id                                          | ✅ Concluído    | TASK-1                                 |
+| TASK-7  | Template do e-mail de ativação e gateway SMTP                                    | 🔄 Em Progresso | TASK-1                                 |
 | TASK-8  | Cadastro: caso de uso e controller de `POST /v1/auth/users`                      | ✏️ Não Iniciado | TASK-3, TASK-4, TASK-6, TASK-7         |
 | TASK-9  | Ativação: caso de uso e controller de `POST /v1/auth/users/activations`          | ✏️ Não Iniciado | TASK-3, TASK-4                         |
 | TASK-10 | Composição da aplicação e declaração das rotas                                   | ✏️ Não Iniciado | TASK-5, TASK-6, TASK-7, TASK-8, TASK-9 |
