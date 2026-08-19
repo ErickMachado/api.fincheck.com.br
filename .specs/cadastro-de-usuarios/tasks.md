@@ -11,7 +11,7 @@ A implementação é dividida em 6 ondas e 13 tarefas. A onda 1 estabelece a fun
 | TASK-3  | Núcleo HTTP: contrato de controller, `204 No Content` e adaptador do Fastify     | 🔄 Em Progresso | TASK-1                                 |
 | TASK-4  | Domínio: `Email`, `User`, `UserActivationToken` e o contrato `UserRepository`    | ✅ Concluído    | TASK-1                                 |
 | TASK-5  | Repositório de usuários em SQL                                                   | ✏️ Não Iniciado | TASK-2, TASK-4                         |
-| TASK-6  | Derivação de hash de senha com Argon2id                                          | 🔄 Em Progresso | TASK-1                                 |
+| TASK-6  | Derivação de hash de senha com Argon2id                                          | ✅ Concluído    | TASK-1                                 |
 | TASK-7  | Template do e-mail de ativação e gateway SMTP                                    | ✏️ Não Iniciado | TASK-1                                 |
 | TASK-8  | Cadastro: caso de uso e controller de `POST /v1/auth/users`                      | ✏️ Não Iniciado | TASK-3, TASK-4, TASK-6, TASK-7         |
 | TASK-9  | Ativação: caso de uso e controller de `POST /v1/auth/users/activations`          | ✏️ Não Iniciado | TASK-3, TASK-4                         |

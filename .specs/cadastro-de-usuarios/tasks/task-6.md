@@ -4,11 +4,11 @@ A senha nunca é armazenada em texto puro e o caso de uso não pode conhecer o a
 
 ## Subtarefas
 
-- [ ] Criar `src/application/interfaces/hasher.ts` declarando a interface `Hasher` com o método `hash(plain: string): Promise<string>`
-- [ ] Criar `src/infra/security/argon2-hasher.ts` implementando `Hasher` com o `@node-rs/argon2` e o algoritmo Argon2id
-- [ ] Extrair os parâmetros de custo (19 MiB de memória, 2 iterações e paralelismo 1) em constantes nomeadas, sem valores mágicos no corpo do método
-- [ ] Conferir que o hash gerado embute os parâmetros de custo e preserva a senha exatamente como recebida, incluindo espaços nas bordas
-- [ ] Executar `npm run format:check` e `npm run lint:check` e corrigir o que apontarem
+- [x] Criar `src/application/interfaces/hasher.ts` declarando a interface `Hasher` com o método `hash(plain: string): Promise<string>`
+- [x] Criar `src/infra/security/argon2-hasher.ts` implementando `Hasher` com o `@node-rs/argon2` e o algoritmo Argon2id
+- [x] Extrair os parâmetros de custo (19 MiB de memória, 2 iterações e paralelismo 1) em constantes nomeadas, sem valores mágicos no corpo do método
+- [x] Conferir que o hash gerado embute os parâmetros de custo e preserva a senha exatamente como recebida, incluindo espaços nas bordas
+- [x] Executar `npm run format:check` e `npm run lint:check` e corrigir o que apontarem
 
 ## Critérios de Aceitação
 
