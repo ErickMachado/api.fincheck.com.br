@@ -4,14 +4,14 @@ O produto ainda não tem persistência nem versionamento de esquema. Esta tarefa
 
 ## Subtarefas
 
-- [ ] Criar `src/infra/database/connection.ts` com o tipo `PostgresConfig` e a classe `Database`, expondo `connect`, `query`, `transaction` e `disconnect` sobre o `Pool` do `pg`
-- [ ] Implementar `transaction` retirando um cliente do pool, emitindo `BEGIN`, executando o handler, emitindo `COMMIT` quando ele resolve e `ROLLBACK` quando ele lança, e sempre devolvendo o cliente ao pool — único `try-catch` da tarefa, permitido por ser camada `infra`
-- [ ] Gerar a migração da tabela `users` com `npm run migration:create`, deixando o prefixo de timestamp para a ferramenta
-- [ ] Escrever o `up` e o `down` da migração de `users` com as colunas `id`, `first_name`, `last_name`, `email`, `password_hash`, `verified_at`, `created_at` e `updated_at`, a chave primária `users_pkey` e a restrição `users_email_unique`
-- [ ] Gerar a migração da tabela `user_activation_tokens` com `npm run migration:create`
-- [ ] Escrever o `up` e o `down` dessa migração com as colunas `id`, `user_id_fk`, `token`, `expires_at`, `used_at` e `created_at`, a chave primária `user_activation_tokens_pkey`, a restrição `user_activation_tokens_token_unique`, o índice `user_activation_tokens_user_id_fk_idx` e a chave estrangeira `user_activation_tokens_user_id_fk_fkey` para `users(id)` com `ON DELETE CASCADE`
-- [ ] Subir o compose local, aplicar as migrações com `npm run migration:up` e conferir tabelas, colunas e índices criados; validar o `down` revertendo e reaplicando
-- [ ] Executar `npm run format:check` e `npm run lint:check` e corrigir o que apontarem
+- [x] Criar `src/infra/database/connection.ts` com o tipo `PostgresConfig` e a classe `Database`, expondo `connect`, `query`, `transaction` e `disconnect` sobre o `Pool` do `pg`
+- [x] Implementar `transaction` retirando um cliente do pool, emitindo `BEGIN`, executando o handler, emitindo `COMMIT` quando ele resolve e `ROLLBACK` quando ele lança, e sempre devolvendo o cliente ao pool — único `try-catch` da tarefa, permitido por ser camada `infra`
+- [x] Gerar a migração da tabela `users` com `npm run migration:create`, deixando o prefixo de timestamp para a ferramenta
+- [x] Escrever o `up` e o `down` da migração de `users` com as colunas `id`, `first_name`, `last_name`, `email`, `password_hash`, `verified_at`, `created_at` e `updated_at`, a chave primária `users_pkey` e a restrição `users_email_unique`
+- [x] Gerar a migração da tabela `user_activation_tokens` com `npm run migration:create`
+- [x] Escrever o `up` e o `down` dessa migração com as colunas `id`, `user_id_fk`, `token`, `expires_at`, `used_at` e `created_at`, a chave primária `user_activation_tokens_pkey`, a restrição `user_activation_tokens_token_unique`, o índice `user_activation_tokens_user_id_fk_idx` e a chave estrangeira `user_activation_tokens_user_id_fk_fkey` para `users(id)` com `ON DELETE CASCADE`
+- [x] Subir o compose local, aplicar as migrações com `npm run migration:up` e conferir tabelas, colunas e índices criados; validar o `down` revertendo e reaplicando
+- [x] Executar `npm run format:check` e `npm run lint:check` e corrigir o que apontarem
 
 ## Critérios de Aceitação
 
