@@ -6,7 +6,7 @@ A implementação é dividida em 6 ondas e 13 tarefas. A onda 1 estabelece a fun
 
 | #       | Título                                                                           | Status          | Bloqueado Por                          |
 | :------ | :------------------------------------------------------------------------------- | :-------------- | -------------------------------------- |
-| TASK-1  | Fundação do projeto: dependências, apelidos de módulo e configuração de ambiente | ✏️ Não Iniciado |                                        |
+| TASK-1  | Fundação do projeto: dependências, apelidos de módulo e configuração de ambiente | 🔄 Em Progresso |                                        |
 | TASK-2  | Conexão com o PostgreSQL e migrações do esquema                                  | ✏️ Não Iniciado | TASK-1                                 |
 | TASK-3  | Núcleo HTTP: contrato de controller, `204 No Content` e adaptador do Fastify     | ✏️ Não Iniciado | TASK-1                                 |
 | TASK-4  | Domínio: `Email`, `User`, `UserActivationToken` e o contrato `UserRepository`    | ✏️ Não Iniciado | TASK-1                                 |
