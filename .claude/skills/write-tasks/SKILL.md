@@ -26,7 +26,8 @@ Estruturar solicitações de funcionalidades em PRDs claros, acionáveis e de es
 - Evite linguagem vaga;
 - Toda tarefa deve ter o escopo bem definido e suas dependências explícitas;
 - Siga rigorosamente o template `./references/TEMPLATE_TASK.md` e NÃO altere sua estrutura;
-- Siga rigorosamente o template `./references/TEMPLATE_KANBAN.md` e NÃO altere sua estrutura;
+- Siga rigorosamente o template `./references/TEMPLATE_TASKS.md` e NÃO altere sua estrutura;
+- Siga rigorosamente o template `./references/TEMPLATE_STATE.json` e NÃO altere sua estrutura;
 
 ## Entrada
 
@@ -36,6 +37,7 @@ O slug de uma funcionalidade.
 
 - Documento markdown salvo em `.specs/[slug]/tasks.md`;
 - Documento markdown salvo em `.specs/[slug]/tasks/task-*.md`;
+- Documento JSON salvo em `.specs/[slug]/state.json`;
 
 ## Processo
 
@@ -43,3 +45,4 @@ O slug de uma funcionalidade.
 2. Leia as regras do projeto em `.claude/rules` e as skills `.claude/skills`;
 3. Decomponha cada tarefa em seu próprio arquivo;
 4. Crie o caminho crítico entre as tarefas e divida a execução em ondas;
+5. Crie o arquivo de estado inicial das tarefas;

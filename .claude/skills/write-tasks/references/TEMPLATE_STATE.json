@@ -1,0 +1,25 @@
+{
+  "OND-*": {
+    "TASK-1": {
+      "status": "TODO",
+      "branch": "feature/[slug]/task-*",
+      "worktree": "[caminho para o worktree]",
+      "agent": "agent-*",
+      "pull_request": "[link para o PR no GitHub]"
+    },
+    "TASK-2": {
+      "status": "IN_PROGRESS",
+      "branch": "feature/[slug]/task-*",
+      "worktree": "[caminho para o worktree]",
+      "agent": "agent-*",
+      "pull_request": "[link para o PR no GitHub]"
+    },
+    "TASK-3": {
+      "status": "DONE",
+      "branch": "feature/[slug]/task-*",
+      "worktree": "[caminho para o worktree]",
+      "agent": "agent-*",
+      "pull_request": "[link para o PR no GitHub]"
+    }
+  }
+}
