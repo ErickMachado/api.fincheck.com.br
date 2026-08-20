@@ -9,6 +9,8 @@
     "url": "git@github.com:ErickMachado/api.fincheck.com.br.git"
   },
   "scripts": {
+    "db:migrate": "tsx --env-file .env src/infra/database/migrator.ts",
+    "db:migrate:create": "node-pg-migrate create --migrations-dir src/infra/database/migrations --migration-file-language sql",
     "format:check": "oxfmt --check",
     "format:fix": "oxfmt",
     "lint:commit": "commitlint --edit $1",
