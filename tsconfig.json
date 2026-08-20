@@ -9,11 +9,16 @@
       "ESNext.Iterator",
       "ESNext.Promise"
     ],
+    "jsx": "react-jsx",
     "module": "NodeNext",
     "moduleResolution": "Node16",
     "paths": {
+      "@application/*": ["./src/application/*"],
       "@common/*": ["./src/common/*"],
-      "@main/*": ["./src/main/*"]
+      "@domain/*": ["./src/domain/*"],
+      "@infra/*": ["./src/infra/*"],
+      "@main/*": ["./src/main/*"],
+      "@tests/*": ["./tests/*"]
     },
     "skipLibCheck": true,
     "strict": true,
