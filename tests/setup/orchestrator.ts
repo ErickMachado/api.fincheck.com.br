@@ -14,7 +14,9 @@ import { poll, type PollOptions } from '@tests/setup/poll'
 import {
   fetchEmailBody,
   findActivationToken,
+  requestActivation,
   requestSignUp,
+  type ActivationResult,
   type SignUpInput,
   type SignUpResult
 } from '@tests/setup/users'
@@ -53,6 +55,10 @@ export class Orchestrator {
 
   public async signUp(overrides: Partial<SignUpInput> = {}): Promise<SignUpResult> {
     return requestSignUp(this.address, overrides)
+  }
+
+  public async activate(token: string): Promise<ActivationResult> {
+    return requestActivation(this.address, token)
   }
 
   public async readActivationToken(recipient: string, options?: PollOptions): Promise<string> {

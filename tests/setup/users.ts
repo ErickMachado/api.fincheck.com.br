@@ -19,6 +19,11 @@ export type SignUpResult = Readonly<{
   status: number
 }>
 
+export type ActivationResult = Readonly<{
+  body: string
+  status: number
+}>
+
 export function buildSignUpInput(overrides: Partial<SignUpInput> = {}): SignUpInput {
   return {
     email: faker.internet.email(),
@@ -49,6 +54,16 @@ export async function requestSignUp(
   })
 
   return { body: await response.text(), input, status: response.status }
+}
+
+export async function requestActivation(address: string, token: string): Promise<ActivationResult> {
+  const response = await fetch(`${address}/v1/users/activations`, {
+    body: JSON.stringify({ token }),
+    headers: { 'Content-Type': 'application/json' },
+    method: 'POST'
+  })
+
+  return { body: await response.text(), status: response.status }
 }
 
 export async function findActivationToken(
