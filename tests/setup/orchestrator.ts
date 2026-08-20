@@ -1,15 +1,21 @@
-import { type Channel } from 'amqplib'
-import { type Pool, type QueryResultRow } from 'pg'
-import { type RabbitMQConnection } from '@infra/queue/rabbitmq/connection'
 import {
   EMAILS_DEAD_QUEUE,
   EMAILS_OUTGOING_QUEUE,
   EMAILS_RETRY_QUEUE
 } from '@infra/queue/rabbitmq/topology'
-import { type FincheckAPI } from '@main/app'
-import { bootstrapOrchestrator } from '@tests/setup/bootstrap'
-import { stopContainers, type StartedContainers } from '@tests/setup/containers'
-import { type MailCatcherClient, type MailCatcherMessage } from '@tests/setup/mailcatcher'
+import {
+  bootstrapOrchestrator,
+  type BootstrapOptions,
+  type BootstrappedOrchestrator
+} from '@tests/setup/bootstrap'
+import { stopContainers } from '@tests/setup/containers'
+import {
+  emailQueueDepth,
+  pollEmailQueueDepth,
+  publishRawEmailMessage,
+  type EmailQueueName
+} from '@tests/setup/email-queues'
+import { type MailCatcherMessage } from '@tests/setup/mailcatcher'
 import { poll, type PollOptions } from '@tests/setup/poll'
 import {
   fetchEmailBody,
@@ -20,35 +26,29 @@ import {
   type SignUpInput,
   type SignUpResult
 } from '@tests/setup/users'
+import { type QueryResultRow } from 'pg'
 
 const TRUNCATE_TABLES_SQL = 'TRUNCATE TABLE users, user_activation_tokens CASCADE'
 const EMAIL_QUEUES = [EMAILS_OUTGOING_QUEUE, EMAILS_RETRY_QUEUE, EMAILS_DEAD_QUEUE]
 
 export class Orchestrator {
-  private constructor(
-    private readonly containers: StartedContainers,
-    private readonly api: FincheckAPI,
-    private readonly pool: Pool,
-    private readonly connection: RabbitMQConnection,
-    private readonly channel: Channel,
-    private readonly mailcatcher: MailCatcherClient
-  ) {}
+  private constructor(private readonly deps: BootstrappedOrchestrator) {}
 
   public get address(): string {
-    return this.api.address
+    return this.deps.api.address
   }
 
   public async cleanup(): Promise<void> {
-    await this.pool.query(TRUNCATE_TABLES_SQL)
-    await Promise.all(EMAIL_QUEUES.map((queue) => this.channel.purgeQueue(queue)))
-    await this.mailcatcher.clear()
+    await this.deps.pool.query(TRUNCATE_TABLES_SQL)
+    await Promise.all(EMAIL_QUEUES.map((queue) => this.deps.channel.purgeQueue(queue)))
+    if (!this.deps.mailcatcherStopped) await this.deps.mailcatcher.clear()
   }
 
   public async query<T extends QueryResultRow = QueryResultRow>(
     sql: string,
     params: unknown[] = []
   ): Promise<T[]> {
-    const result = await this.pool.query<T>(sql, params)
+    const result = await this.deps.pool.query<T>(sql, params)
 
     return result.rows
   }
@@ -62,16 +62,16 @@ export class Orchestrator {
   }
 
   public async readActivationToken(recipient: string, options?: PollOptions): Promise<string> {
-    return findActivationToken(this.mailcatcher, recipient, options)
+    return findActivationToken(this.deps.mailcatcher, recipient, options)
   }
 
   public async readEmailBody(recipient: string, options?: PollOptions): Promise<string> {
-    return fetchEmailBody(this.mailcatcher, recipient, options)
+    return fetchEmailBody(this.deps.mailcatcher, recipient, options)
   }
 
   public async waitForEmails(count: number, options?: PollOptions): Promise<MailCatcherMessage[]> {
     return poll(
-      () => this.mailcatcher.list(),
+      () => this.deps.mailcatcher.list(),
       (messages) => messages.length >= count,
       options
     )
@@ -79,28 +79,37 @@ export class Orchestrator {
 
   public async assertNoEmailWasSent(expectedCount = 0, options?: PollOptions): Promise<void> {
     await poll(
-      () => this.channel.checkQueue(EMAILS_OUTGOING_QUEUE),
-      (result) => result.messageCount === 0,
+      () => emailQueueDepth(this.deps.channel, 'outgoing'),
+      (count) => count === 0,
       options
     )
-    const messages = await this.mailcatcher.list()
+    const messages = await this.deps.mailcatcher.list()
 
     if (messages.length > expectedCount)
       throw new Error('Uma mensagem inesperada chegou à caixa de e-mail')
   }
 
-  public async stop(): Promise<void> {
-    await this.api.stop()
-    await this.channel.close()
-    await this.connection.close()
-    await this.pool.end()
-    await stopContainers(this.containers)
+  public publishRawEmail(message: unknown): void {
+    publishRawEmailMessage(this.deps.channel, message)
   }
 
-  public static async start(): Promise<Orchestrator> {
-    const { api, channel, connection, containers, mailcatcher, pool } =
-      await bootstrapOrchestrator()
+  public async waitForEmailQueueDepth(
+    queue: EmailQueueName,
+    minimum: number,
+    options?: PollOptions
+  ): Promise<number> {
+    return pollEmailQueueDepth(this.deps.channel, queue, minimum, options)
+  }
 
-    return new Orchestrator(containers, api, pool, connection, channel, mailcatcher)
+  public async stop(): Promise<void> {
+    await this.deps.api.stop()
+    await this.deps.channel.close()
+    await this.deps.connection.close()
+    await this.deps.pool.end()
+    await stopContainers(this.deps.containers, { skipMailcatcher: this.deps.mailcatcherStopped })
+  }
+
+  public static async start(options?: BootstrapOptions): Promise<Orchestrator> {
+    return new Orchestrator(await bootstrapOrchestrator(options))
   }
 }
