@@ -6,6 +6,7 @@ import {
   createPersistenceDependencies,
   type PersistenceDependencies
 } from '@main/factories/persistence'
+import { createUsecases } from '@main/factories/usecases'
 import { problem } from '@main/plugins/problem'
 import { registerRoutes } from '@main/router'
 
@@ -49,8 +50,9 @@ export class FincheckAPI {
 
     const persistence = createPersistenceDependencies(config)
     const messaging = await createMessagingDependencies(config)
+    const usecases = createUsecases(persistence, messaging)
 
-    registerRoutes(app)
+    registerRoutes(app, usecases)
 
     return new FincheckAPI(app, config, messaging, persistence)
   }
