@@ -1,7 +1,7 @@
 import { type ZodError } from 'zod'
 import { StatusCode } from '@common/http/statuses'
 
-type Details = Readonly<{
+export type Details = Readonly<{
   title: string
   detail: string
   status: StatusCode
@@ -54,6 +54,10 @@ export class Problem extends Error {
     }
 
     return problem
+  }
+
+  public static create(details: Details): Problem {
+    return new Problem(details)
   }
 
   public static internal(): Problem {
