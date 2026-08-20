@@ -15,6 +15,16 @@
 
 ## Engenharia
 
-| #      | Contexto                                                                                                             | Origem                 |
-| :----- | :------------------------------------------------------------------------------------------------------------------- | :--------------------- |
-| ENG-01 | O Resend é o provedor de envio de e-mails transacionais do Fincheck. Todo e-mail enviado pelo produto passa por ele. | `cadastro-de-usuarios` |
+| #      | Contexto                                                                                                                                                                                                                  | Origem                 |
+| :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------- |
+| ENG-01 | O Resend é o provedor de envio de e-mails transacionais do Fincheck. Todo e-mail enviado pelo produto passa por ele.                                                                                                      | `cadastro-de-usuarios` |
+| ENG-02 | O PostgreSQL é o banco de dados do Fincheck, acessado pelo driver `pg`. O esquema é versionado em migrações `.sql` executadas pelo `node-pg-migrate`.                                                                     | `cadastro-de-usuarios` |
+| ENG-03 | Senhas são armazenadas exclusivamente como hash argon2id. O texto em claro nunca é persistido nem registrado em log.                                                                                                      | `cadastro-de-usuarios` |
+| ENG-04 | Tokens enviados por e-mail são gerados com 32 bytes aleatórios criptográficos e persistidos apenas como resumo SHA-256, de modo que um vazamento do banco não produza tokens usáveis.                                     | `cadastro-de-usuarios` |
+| ENG-05 | Erros de schema respondem `400` e violações de regra de negócio respondem `422`. Ambos usam o formato `Problem` e nenhum erro customizado é criado.                                                                       | `cadastro-de-usuarios` |
+| ENG-06 | A camada `application` não conhece o framework HTTP. Controllers recebem um contrato próprio e a adaptação para o Fastify vive em `src/main/adapters`.                                                                    | `cadastro-de-usuarios` |
+| ENG-07 | Escritas que abrangem mais de uma tabela rodam dentro de um `Transaction`, que delimita a transação explícita; os repositórios resolvem a conexão pelo contexto corrente. A publicação de mensagens ocorre após o commit. | `cadastro-de-usuarios` |
+| ENG-08 | Testes de integração sobem os serviços externos em contêineres efêmeros via Testcontainers, sem dublês em processo. O ciclo de vida fica no orquestrador em `tests/setup`.                                                | `cadastro-de-usuarios` |
+| ENG-09 | A entrega de e-mail acontece por SMTP, e não pelo SDK do provedor, mantendo o provedor de `ENG-01` substituível e permitindo apontar o mesmo código para um servidor local.                                               | `cadastro-de-usuarios` |
+| ENG-10 | Chamadas a serviços externos que não pertencem ao caminho da requisição são publicadas numa fila do RabbitMQ e processadas por um consumidor, com retentativa por dead lettering e fila de mensagens mortas.              | `cadastro-de-usuarios` |
+| ENG-11 | Templates de e-mail são componentes React Email estilizados com Tailwind, renderizados em HTML e texto puro a partir da mesma árvore.                                                                                     | `cadastro-de-usuarios` |
