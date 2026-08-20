@@ -5,7 +5,7 @@ export default {
     'scope-enum': [
       2,
       'always',
-      ['ai', 'code', 'common', 'dependencies', 'env', 'main', 'tooling', 'workflow']
+      ['ai', 'code', 'common', 'dependencies', 'env', 'main', 'spec', 'tooling', 'workflow']
     ],
     'scope-empty': [2, 'never'],
     'subject-case': [2, 'always', 'lower-case'],
