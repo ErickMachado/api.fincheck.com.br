@@ -27,11 +27,14 @@ export async function startContainers(): Promise<StartedContainers> {
   return { mailcatcher, postgres, rabbitmq }
 }
 
-export async function stopContainers(containers: StartedContainers): Promise<void> {
+export async function stopContainers(
+  containers: StartedContainers,
+  options: Readonly<{ skipMailcatcher?: boolean }> = {}
+): Promise<void> {
   await Promise.all([
     containers.postgres.stop(),
     containers.rabbitmq.stop(),
-    containers.mailcatcher.stop()
+    options.skipMailcatcher ? Promise.resolve() : containers.mailcatcher.stop()
   ])
 }
 
