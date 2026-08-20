@@ -1,0 +1,32 @@
+name: fincheck
+
+services:
+  postgres:
+    image: postgres:18.1
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+    ports:
+      - '${POSTGRES_PORT}:5432'
+    volumes:
+      - fincheck_postgres:/var/lib/postgresql
+
+  rabbitmq:
+    image: rabbitmq:4.2-management
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+      RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_VHOST}
+    ports:
+      - '${RABBITMQ_PORT}:5672'
+      - '15672:15672'
+
+  mailcatcher:
+    image: sj26/mailcatcher
+    ports:
+      - '${SMTP_PORT}:1025'
+      - '1080:1080'
+
+volumes:
+  fincheck_postgres:
