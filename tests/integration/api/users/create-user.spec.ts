@@ -213,6 +213,18 @@ describe('POST /v1/users', () => {
     expect(user.email).toBe(alias)
     expect(await orchestrator.readActivationToken(alias)).toBeTruthy()
   })
+
+  test('TU-19: Keep the consumer alive and dead-letter a message published outside the schema', async () => {
+    // Act
+    orchestrator.publishRawEmail({ payload: {}, type: 'unknown' })
+    const result = await orchestrator.signUp()
+
+    // Assert
+    await orchestrator.waitForEmailQueueDepth('dead', 1)
+    await orchestrator.waitForEmails(1)
+    expect(result.status).toBe(204)
+    await orchestrator.assertNoEmailWasSent(1)
+  })
 })
 
 function pointersOf(body: string): string[] {
