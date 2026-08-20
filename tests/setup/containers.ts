@@ -27,6 +27,14 @@ export async function startContainers(): Promise<StartedContainers> {
   return { mailcatcher, postgres, rabbitmq }
 }
 
+export async function stopContainers(containers: StartedContainers): Promise<void> {
+  await Promise.all([
+    containers.postgres.stop(),
+    containers.rabbitmq.stop(),
+    containers.mailcatcher.stop()
+  ])
+}
+
 export function mailCatcherAddress(container: StartedTestContainer): {
   host: string
   port: number

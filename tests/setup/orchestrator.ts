@@ -1,21 +1,23 @@
 import { type Channel } from 'amqplib'
-import { Pool, type QueryResultRow } from 'pg'
-import { Configuration } from '@common/core/config'
-import { migrate } from '@infra/database/migrator'
-import { RabbitMQConnection } from '@infra/queue/rabbitmq/connection'
+import { type Pool, type QueryResultRow } from 'pg'
+import { type RabbitMQConnection } from '@infra/queue/rabbitmq/connection'
 import {
   EMAILS_DEAD_QUEUE,
   EMAILS_OUTGOING_QUEUE,
   EMAILS_RETRY_QUEUE
 } from '@infra/queue/rabbitmq/topology'
-import { FincheckAPI } from '@main/app'
-import {
-  mailCatcherAddress,
-  startContainers,
-  type StartedContainers
-} from '@tests/setup/containers'
-import { MailCatcherClient, type MailCatcherMessage } from '@tests/setup/mailcatcher'
+import { type FincheckAPI } from '@main/app'
+import { bootstrapOrchestrator } from '@tests/setup/bootstrap'
+import { stopContainers, type StartedContainers } from '@tests/setup/containers'
+import { type MailCatcherClient, type MailCatcherMessage } from '@tests/setup/mailcatcher'
 import { poll, type PollOptions } from '@tests/setup/poll'
+import {
+  fetchEmailBody,
+  findActivationToken,
+  requestSignUp,
+  type SignUpInput,
+  type SignUpResult
+} from '@tests/setup/users'
 
 const TRUNCATE_TABLES_SQL = 'TRUNCATE TABLE users, user_activation_tokens CASCADE'
 const EMAIL_QUEUES = [EMAILS_OUTGOING_QUEUE, EMAILS_RETRY_QUEUE, EMAILS_DEAD_QUEUE]
@@ -49,6 +51,18 @@ export class Orchestrator {
     return result.rows
   }
 
+  public async signUp(overrides: Partial<SignUpInput> = {}): Promise<SignUpResult> {
+    return requestSignUp(this.address, overrides)
+  }
+
+  public async readActivationToken(recipient: string, options?: PollOptions): Promise<string> {
+    return findActivationToken(this.mailcatcher, recipient, options)
+  }
+
+  public async readEmailBody(recipient: string, options?: PollOptions): Promise<string> {
+    return fetchEmailBody(this.mailcatcher, recipient, options)
+  }
+
   public async waitForEmails(count: number, options?: PollOptions): Promise<MailCatcherMessage[]> {
     return poll(
       () => this.mailcatcher.list(),
@@ -57,7 +71,7 @@ export class Orchestrator {
     )
   }
 
-  public async assertNoEmailWasSent(options?: PollOptions): Promise<void> {
+  public async assertNoEmailWasSent(expectedCount = 0, options?: PollOptions): Promise<void> {
     await poll(
       () => this.channel.checkQueue(EMAILS_OUTGOING_QUEUE),
       (result) => result.messageCount === 0,
@@ -65,7 +79,8 @@ export class Orchestrator {
     )
     const messages = await this.mailcatcher.list()
 
-    if (messages.length > 0) throw new Error('Uma mensagem inesperada chegou à caixa de e-mail')
+    if (messages.length > expectedCount)
+      throw new Error('Uma mensagem inesperada chegou à caixa de e-mail')
   }
 
   public async stop(): Promise<void> {
@@ -73,25 +88,12 @@ export class Orchestrator {
     await this.channel.close()
     await this.connection.close()
     await this.pool.end()
-    await Promise.all([
-      this.containers.postgres.stop(),
-      this.containers.rabbitmq.stop(),
-      this.containers.mailcatcher.stop()
-    ])
+    await stopContainers(this.containers)
   }
 
   public static async start(): Promise<Orchestrator> {
-    const containers = await startContainers()
-    const config = await Configuration.from(process.env)
-    await migrate(config, { direction: 'up' })
-
-    const api = await FincheckAPI.create(config)
-    await api.start()
-    const pool = new Pool(config.postgres)
-    const connection = await RabbitMQConnection.connect(config.rabbitmq)
-    const channel = await connection.openChannel()
-    const { host, port } = mailCatcherAddress(containers.mailcatcher)
-    const mailcatcher = MailCatcherClient.create(host, port)
+    const { api, channel, connection, containers, mailcatcher, pool } =
+      await bootstrapOrchestrator()
 
     return new Orchestrator(containers, api, pool, connection, channel, mailcatcher)
   }
