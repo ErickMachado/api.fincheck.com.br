@@ -4,6 +4,8 @@ import { EmailLayout } from '@infra/email/templates/layout'
 const ACTIVATION_LINK_TTL_MINUTES = 15
 const ACTIVATION_PATH = '/auth/users/activations'
 
+export const ACTIVATION_EMAIL_SUBJECT = 'Ative sua conta no Fincheck'
+
 type ActivationEmailProps = {
   firstName: string
   token: string
