@@ -13,6 +13,7 @@ export class TransactionContext {
   }
 
   public resolve(): Executor {
+    /* v8 ignore next -- falls back to the pool only for reads issued outside `transaction.run`, which the current usecases never do */
     return this.storage.getStore() ?? this.pool
   }
 

@@ -35,6 +35,7 @@ export class PostgresUserRepository implements UserRepository {
       ]
     )
 
+    /* v8 ignore next -- pg always returns a number for `INSERT ... RETURNING`; the fallback only satisfies the nullable type */
     return (result.rowCount ?? 0) > 0
   }
 

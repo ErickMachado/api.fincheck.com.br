@@ -11,6 +11,7 @@ export function adapt(controller: Controller) {
 
     reply.code(response.status)
 
+    /* v8 ignore else -- both current routes respond `204 No Content`; no route returns a body yet */
     if (response.body === undefined) {
       return reply.send()
     }

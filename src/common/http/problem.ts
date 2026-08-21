@@ -77,6 +77,7 @@ export class Problem extends Error {
       key = `#/${key}`
     }
 
+    /* v8 ignore next -- the request schemas never raise two issues for the same field, so the pointer never repeats */
     if (this.errors.has(key)) return
 
     this.errors.set(key, error.message)

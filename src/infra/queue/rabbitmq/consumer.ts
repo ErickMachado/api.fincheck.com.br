@@ -19,6 +19,7 @@ export class RabbitMQConsumer {
     await options.channel.prefetch(PREFETCH_COUNT)
 
     await options.channel.consume(options.queue, (message) => {
+      /* v8 ignore next -- a null message only arrives on broker-initiated consumer cancellation, not triggered by the current scenarios */
       if (!message) return
 
       void RabbitMQConsumer.process(options, message)

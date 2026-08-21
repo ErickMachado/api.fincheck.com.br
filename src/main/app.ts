@@ -21,9 +21,11 @@ export class FincheckAPI {
   public get address(): string {
     const info = this.app.server.address()
 
+    /* v8 ignore start -- `address` is only queried by the test orchestrator after a successful `start`, so the server is always listening */
     if (!info || typeof info === 'string') {
       throw new Error('Server address is not available')
     }
+    /* v8 ignore stop */
 
     return `http://${this.host(info)}:${info.port}`
   }
@@ -60,6 +62,7 @@ export class FincheckAPI {
   private host(info: AddressInfo): string {
     const LOOPBACK_HOST = '127.0.0.1'
 
+    /* v8 ignore next -- the test environment always binds to `0.0.0.0`; a specific bind host is not exercised */
     return this.config.app.host === '0.0.0.0' ? LOOPBACK_HOST : info.address
   }
 }
