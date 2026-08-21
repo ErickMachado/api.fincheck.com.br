@@ -31,6 +31,7 @@ export async function migrate(config: Configuration, options: MigrateOptions): P
   }
 }
 
+/* v8 ignore start -- CLI entry point exercised only via `npm run db:migrate`, not through HTTP routes */
 async function main(): Promise<void> {
   const config = await Configuration.from(process.env)
 
@@ -40,3 +41,4 @@ async function main(): Promise<void> {
 if (require.main === module) {
   main()
 }
+/* v8 ignore stop */

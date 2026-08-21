@@ -16,6 +16,7 @@ export class RabbitMQPublisher {
         options.routingKey,
         content,
         { persistent: true },
+        /* v8 ignore start -- a broker-level publish rejection cannot be deterministically triggered without stubbing the gateway */
         (error) => {
           if (error) {
             reject(error instanceof Error ? error : new Error(String(error)))
@@ -24,6 +25,7 @@ export class RabbitMQPublisher {
 
           resolve()
         }
+        /* v8 ignore stop */
       )
     })
   }

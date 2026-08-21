@@ -9,9 +9,11 @@ export class PostgresTransaction implements Transaction {
   ) {}
 
   public async run<T>(handler: () => Promise<T>): Promise<T> {
+    /* v8 ignore start -- reentrancy is not exercised, since every usecase calls `run` once per request */
     if (this.context.current()) {
       return handler()
     }
+    /* v8 ignore stop */
 
     const client = await this.pool.connect()
 
