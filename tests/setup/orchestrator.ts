@@ -12,6 +12,8 @@ import { stopContainers } from '@tests/setup/containers'
 import {
   emailQueueDepth,
   pollEmailQueueDepth,
+  publishEmailMessageWithDeaths,
+  publishMalformedEmailMessage,
   publishRawEmailMessage,
   type EmailQueueName
 } from '@tests/setup/email-queues'
@@ -91,6 +93,14 @@ export class Orchestrator {
 
   public publishRawEmail(message: unknown): void {
     publishRawEmailMessage(this.deps.channel, message)
+  }
+
+  public publishEmailWithDeaths(message: unknown, deathCount: number): void {
+    publishEmailMessageWithDeaths(this.deps.channel, message, deathCount)
+  }
+
+  public publishMalformedEmail(): void {
+    publishMalformedEmailMessage(this.deps.channel)
   }
 
   public async waitForEmailQueueDepth(

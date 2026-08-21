@@ -22,6 +22,23 @@ export function publishRawEmailMessage(channel: Channel, message: unknown): void
   })
 }
 
+export function publishMalformedEmailMessage(channel: Channel): void {
+  channel.sendToQueue(EMAILS_OUTGOING_QUEUE, Buffer.from('not-json'), { persistent: true })
+}
+
+export function publishEmailMessageWithDeaths(
+  channel: Channel,
+  message: unknown,
+  deathCount: number
+): void {
+  channel.sendToQueue(EMAILS_OUTGOING_QUEUE, Buffer.from(JSON.stringify(message)), {
+    headers: {
+      'x-death': [{ count: deathCount, queue: EMAILS_OUTGOING_QUEUE, reason: 'rejected' }]
+    },
+    persistent: true
+  })
+}
+
 export async function emailQueueDepth(channel: Channel, queue: EmailQueueName): Promise<number> {
   const result = await channel.checkQueue(EMAIL_QUEUE_NAMES[queue])
 

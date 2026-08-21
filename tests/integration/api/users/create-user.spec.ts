@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { afterAll, beforeAll, beforeEach, describe, expect, test } from 'vitest'
+import { EMAILS_MAX_ATTEMPTS } from '@infra/queue/rabbitmq/topology'
 import { Orchestrator } from '@tests/setup/orchestrator'
 
 const ACTIVATION_LINK_PATTERN = /http:\/\/localhost:3000\/auth\/users\/activations\?token=/
@@ -217,6 +218,65 @@ describe('POST /v1/users', () => {
   test('TU-19: Keep the consumer alive and dead-letter a message published outside the schema', async () => {
     // Act
     orchestrator.publishRawEmail({ payload: {}, type: 'unknown' })
+    const result = await orchestrator.signUp()
+
+    // Assert
+    await orchestrator.waitForEmailQueueDepth('dead', 1)
+    await orchestrator.waitForEmails(1)
+    expect(result.status).toBe(204)
+    await orchestrator.assertNoEmailWasSent(1)
+  })
+
+  test('TU-21: Return 400 pointing # for a request body that is not an object', async () => {
+    // Act
+    const response = await fetch(`${orchestrator.address}/v1/users`, {
+      body: JSON.stringify([]),
+      headers: { 'Content-Type': 'application/json' },
+      method: 'POST'
+    })
+
+    // Assert
+    expect(response.status).toBe(400)
+    expect(pointersOf(await response.text())).toContain('#')
+  })
+
+  test('TU-22: Return the generic error for a malformed JSON body', async () => {
+    // Act
+    const response = await fetch(`${orchestrator.address}/v1/users`, {
+      body: '{"email":',
+      headers: { 'Content-Type': 'application/json' },
+      method: 'POST'
+    })
+
+    // Assert
+    expect(response.status).toBe(500)
+  })
+
+  test('TU-23: Keep the consumer alive and dead-letter a message that is not valid JSON', async () => {
+    // Act
+    orchestrator.publishMalformedEmail()
+    const result = await orchestrator.signUp()
+
+    // Assert
+    await orchestrator.waitForEmailQueueDepth('dead', 1)
+    await orchestrator.waitForEmails(1)
+    expect(result.status).toBe(204)
+    await orchestrator.assertNoEmailWasSent(1)
+  })
+
+  test('TU-24: Dead-letter a message that already exhausted every retry attempt', async () => {
+    // Arrange
+    const message = {
+      payload: {
+        firstName: faker.person.firstName(),
+        recipient: faker.internet.email(),
+        token: faker.string.alphanumeric(32)
+      },
+      type: 'activation'
+    }
+
+    // Act
+    orchestrator.publishEmailWithDeaths(message, EMAILS_MAX_ATTEMPTS)
     const result = await orchestrator.signUp()
 
     // Assert

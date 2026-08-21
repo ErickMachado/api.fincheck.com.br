@@ -71,7 +71,53 @@ describe('POST /v1/users/activations', () => {
     expect(result.status).toBe(422)
     expect(await isActivated(orchestrator, signUp.input.email)).toBe(true)
   })
+
+  test('TU-21: Return 400 pointing #/token for a request without a token', async () => {
+    // Act
+    const response = await fetch(`${orchestrator.address}/v1/users/activations`, {
+      body: JSON.stringify({}),
+      headers: { 'Content-Type': 'application/json' },
+      method: 'POST'
+    })
+
+    // Assert
+    expect(response.status).toBe(400)
+    expect(pointersOf(await response.text())).toContain('#/token')
+  })
+
+  test('TU-22: Return the generic error for a pending token whose account no longer exists', async () => {
+    // Arrange
+    const signUp = await orchestrator.signUp()
+    const token = await orchestrator.readActivationToken(signUp.input.email)
+    await orphanActivation(orchestrator, signUp.input.email)
+
+    // Act
+    const result = await orchestrator.activate(token)
+
+    // Assert
+    expect(result.status).toBe(422)
+  })
 })
+
+async function orphanActivation(orchestrator: Orchestrator, email: string): Promise<void> {
+  const [user] = await orchestrator.query<{ id: string }>('SELECT id FROM users WHERE email = $1', [
+    email.toLowerCase()
+  ])
+
+  await orchestrator.query('ALTER TABLE users DISABLE TRIGGER ALL')
+
+  try {
+    await orchestrator.query('DELETE FROM users WHERE id = $1', [user.id])
+  } finally {
+    await orchestrator.query('ALTER TABLE users ENABLE TRIGGER ALL')
+  }
+}
+
+function pointersOf(body: string): string[] {
+  const problem = JSON.parse(body) as { errors: Array<{ pointer: string }> }
+
+  return problem.errors.map((error) => error.pointer)
+}
 
 async function isActivated(orchestrator: Orchestrator, email: string): Promise<boolean> {
   const [user] = await orchestrator.query<{ is_activated: boolean }>(
