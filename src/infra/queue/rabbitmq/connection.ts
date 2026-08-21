@@ -12,10 +12,6 @@ export class RabbitMQConnection {
     return this.model.createConfirmChannel()
   }
 
-  public onReconnect(listener: () => void): void {
-    this.model.on('connect', listener)
-  }
-
   public async close(): Promise<void> {
     await this.model.close()
   }
