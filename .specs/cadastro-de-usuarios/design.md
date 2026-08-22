@@ -390,26 +390,26 @@ Não se aplica.
 
 ## Dependências
 
-| Pacote                       | Produção | Versão    | Justificativa                                                                                                        |
-| :--------------------------- | :------- | :-------- | :------------------------------------------------------------------------------------------------------------------- |
-| `pg`                         | ✅       | `8.23.0`  | Driver PostgreSQL com pool e controle manual de transação, exigido como par pelo `node-pg-migrate`                   |
-| `node-pg-migrate`            | ✅       | `9.0.0`   | Migrações versionadas em arquivos `.sql`, com prefixo de timestamp automático e API programática                     |
-| `@node-rs/argon2`            | ✅       | `2.1.0`   | Hash argon2id com binários pré-compilados, compatível com o `ignore-scripts = true` do `.npmrc`                      |
-| `nodemailer`                 | ✅       | `8.0.11`  | Cliente SMTP maduro do ecossistema Node.js, com pool de conexões e montagem de mensagem multipart                    |
-| `amqplib`                    | ✅       | `2.0.1`   | Cliente AMQP oficial; a linha 2 traz tipagem própria, zero dependências, canal de confirmação e reconexão automática |
-| `@react-email/components`    | ✅       | `1.0.12`  | Componentes de e-mail, o `Tailwind` e a função `render`; carrega o `tailwindcss` v4 de forma transitiva              |
-| `react`                      | ✅       | `19.2.8`  | Par obrigatório dos componentes de e-mail                                                                            |
-| `react-dom`                  | ✅       | `19.2.8`  | Par obrigatório da renderização para HTML e para texto puro                                                          |
-| `ulid`                       | ✅       | `3.0.2`   | Geração dos identificadores das entidades, conforme `code-standards.md`                                              |
-| `@types/pg`                  | ❌       | `8.21.0`  | Tipagem do driver; versões mais recentes ainda estão em quarentena pelo `.npmrc`                                     |
-| `testcontainers`             | ❌       | `12.1.0`  | Ciclo de vida dos contêineres usados pelo orquestrador de testes                                                     |
-| `@testcontainers/postgresql` | ❌       | `12.1.0`  | Contêiner de PostgreSQL efêmero por execução de suíte                                                                |
-| `@faker-js/faker`            | ❌       | `10.6.0`  | Geração de dados de entrada aleatórios nos testes, conforme `testing-standards.md`                                   |
-| `@types/nodemailer`          | ❌       | `8.0.1`   | Tipagem do cliente SMTP, que não distribui declarações próprias; major alinhado ao do `nodemailer`                   |
-| `@types/react`               | ❌       | `19.2.18` | Tipagem do JSX usado nos templates                                                                                   |
-| `@types/react-dom`           | ❌       | `19.2.4`  | Tipagem exigida na resolução dos tipos da renderização para HTML                                                     |
-| `@testcontainers/rabbitmq`   | ❌       | `12.1.0`  | Broker efêmero por execução de suíte                                                                                 |
-| `@vitest/coverage-v8`        | ❌       | `4.1.10`  | Medição e imposição do mínimo de 90% de cobertura; versão alinhada ao `vitest` já instalado                          |
+| Pacote                       | Produção | Versão    | Justificativa                                                                                                                            |
+| :--------------------------- | :------- | :-------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
+| `pg`                         | ✅       | `8.23.0`  | Driver PostgreSQL com pool e controle manual de transação, exigido como par pelo `node-pg-migrate`                                       |
+| `node-pg-migrate`            | ✅       | `9.0.0`   | Migrações versionadas em arquivos `.sql`, com prefixo de timestamp automático e API programática                                         |
+| `@node-rs/argon2`            | ✅       | `2.1.0`   | Hash argon2id com binários pré-compilados, compatível com o `ignore-scripts = true` do `.npmrc`                                          |
+| `nodemailer`                 | ✅       | `9.0.5`   | Cliente SMTP maduro do ecossistema Node.js, com pool de conexões e montagem de mensagem multipart; linha 9 corrige a GHSA-p6gq-j5cr-w38f |
+| `amqplib`                    | ✅       | `2.0.1`   | Cliente AMQP oficial; a linha 2 traz tipagem própria, zero dependências, canal de confirmação e reconexão automática                     |
+| `@react-email/components`    | ✅       | `1.0.12`  | Componentes de e-mail, o `Tailwind` e a função `render`; carrega o `tailwindcss` v4 de forma transitiva                                  |
+| `react`                      | ✅       | `19.2.8`  | Par obrigatório dos componentes de e-mail                                                                                                |
+| `react-dom`                  | ✅       | `19.2.8`  | Par obrigatório da renderização para HTML e para texto puro                                                                              |
+| `ulid`                       | ✅       | `3.0.2`   | Geração dos identificadores das entidades, conforme `code-standards.md`                                                                  |
+| `@types/pg`                  | ❌       | `8.21.0`  | Tipagem do driver, alinhada ao major do `pg` instalado                                                                                   |
+| `testcontainers`             | ❌       | `12.1.0`  | Ciclo de vida dos contêineres usados pelo orquestrador de testes                                                                         |
+| `@testcontainers/postgresql` | ❌       | `12.1.0`  | Contêiner de PostgreSQL efêmero por execução de suíte                                                                                    |
+| `@faker-js/faker`            | ❌       | `10.6.0`  | Geração de dados de entrada aleatórios nos testes, conforme `testing-standards.md`                                                       |
+| `@types/nodemailer`          | ❌       | `8.0.1`   | Tipagem do cliente SMTP, que não distribui declarações próprias; último major publicado e compatível com o `nodemailer` 9                |
+| `@types/react`               | ❌       | `19.2.18` | Tipagem do JSX usado nos templates                                                                                                       |
+| `@types/react-dom`           | ❌       | `19.2.4`  | Tipagem exigida na resolução dos tipos da renderização para HTML                                                                         |
+| `@testcontainers/rabbitmq`   | ❌       | `12.1.0`  | Broker efêmero por execução de suíte                                                                                                     |
+| `@vitest/coverage-v8`        | ❌       | `4.1.10`  | Medição e imposição do mínimo de 90% de cobertura; versão alinhada ao `vitest` já instalado                                              |
 
 ## Decisões
 

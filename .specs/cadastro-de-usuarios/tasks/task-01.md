@@ -4,9 +4,9 @@ O repositório hoje só possui o servidor Fastify, o `Problem` e a configuraçã
 
 ## Subtarefas
 
-- [x] Adicionar as dependências de produção nas versões exatas da TechSpec: `pg@8.23.0`, `node-pg-migrate@9.0.0`, `@node-rs/argon2@2.1.0`, `nodemailer@8.0.11`, `amqplib@2.0.1`, `@react-email/components@1.0.12`, `react@19.2.8`, `react-dom@19.2.8` e `ulid@3.0.2`;
+- [x] Adicionar as dependências de produção nas versões exatas da TechSpec: `pg@8.23.0`, `node-pg-migrate@9.0.0`, `@node-rs/argon2@2.1.0`, `nodemailer@9.0.5`, `amqplib@2.0.1`, `@react-email/components@1.0.12`, `react@19.2.8`, `react-dom@19.2.8` e `ulid@3.0.2`;
 - [x] Adicionar as dependências de desenvolvimento nas versões exatas da TechSpec: `@types/pg@8.21.0`, `testcontainers@12.1.0`, `@testcontainers/postgresql@12.1.0`, `@testcontainers/rabbitmq@12.1.0`, `@faker-js/faker@10.6.0`, `@types/nodemailer@8.0.1`, `@types/react@19.2.18`, `@types/react-dom@19.2.4` e `@vitest/coverage-v8@4.1.10`;
-- [x] Confirmar que nenhuma versão instalada fere o período de quarentena de `min-release-age` do `.npmrc` e, se ferir, selecionar a versão anterior;
+- [x] Confirmar que nenhuma versão instalada carrega vulnerabilidade conhecida reportada pelo `npm audit`;
 - [x] Adicionar os apelidos `@application/*`, `@domain/*`, `@infra/*` e `@tests/*` em `compilerOptions.paths` do `tsconfig.json`;
 - [x] Habilitar `"jsx": "react-jsx"` no `tsconfig.json` para permitir os templates de e-mail em `.tsx`;
 - [x] Adicionar os scripts `db:migrate` e `db:migrate:create` no `package.json`;
