@@ -1,0 +1,121 @@
+{
+  "OND-1": {
+    "TASK-01": {
+      "status": "DONE",
+      "branch": "feature/cadastro-de-usuarios/task-01",
+      "worktree": "/Users/erick/orca/worktrees/cadastro-de-usuarios/task-01",
+      "agent": "a891f069fced420b7",
+      "pull_request": "https://github.com/ErickMachado/api.fincheck.com.br/pull/34"
+    }
+  },
+  "OND-2": {
+    "TASK-02": {
+      "status": "DONE",
+      "branch": "feature/cadastro-de-usuarios/task-02",
+      "worktree": "/Users/erick/orca/worktrees/cadastro-de-usuarios/task-02",
+      "agent": "a4fc57855d6468957",
+      "pull_request": "https://github.com/ErickMachado/api.fincheck.com.br/pull/36"
+    },
+    "TASK-03": {
+      "status": "DONE",
+      "branch": "feature/cadastro-de-usuarios/task-03",
+      "worktree": "/Users/erick/orca/worktrees/cadastro-de-usuarios/task-03",
+      "agent": "aab0923455e09abc1",
+      "pull_request": "https://github.com/ErickMachado/api.fincheck.com.br/pull/38"
+    },
+    "TASK-05": {
+      "status": "DONE",
+      "branch": "feature/cadastro-de-usuarios/task-05",
+      "worktree": "/Users/erick/orca/worktrees/cadastro-de-usuarios/task-05",
+      "agent": "af65cabbff6ce643a",
+      "pull_request": "https://github.com/ErickMachado/api.fincheck.com.br/pull/35"
+    },
+    "TASK-06": {
+      "status": "DONE",
+      "branch": "feature/cadastro-de-usuarios/task-06",
+      "worktree": "/Users/erick/orca/worktrees/cadastro-de-usuarios/task-06",
+      "agent": "a40609abd6569e551",
+      "pull_request": "https://github.com/ErickMachado/api.fincheck.com.br/pull/39"
+    },
+    "TASK-07": {
+      "status": "DONE",
+      "branch": "feature/cadastro-de-usuarios/task-07",
+      "worktree": "/Users/erick/orca/worktrees/cadastro-de-usuarios/task-07",
+      "agent": "aa1f4d72e8c3d5b21",
+      "pull_request": "https://github.com/ErickMachado/api.fincheck.com.br/pull/37"
+    }
+  },
+  "OND-3": {
+    "TASK-04": {
+      "status": "DONE",
+      "branch": "feature/cadastro-de-usuarios/task-04",
+      "worktree": "/Users/erick/orca/worktrees/cadastro-de-usuarios/task-04",
+      "agent": "acdf784c6b25bc354",
+      "pull_request": "https://github.com/ErickMachado/api.fincheck.com.br/pull/40"
+    },
+    "TASK-08": {
+      "status": "DONE",
+      "branch": "feature/cadastro-de-usuarios/task-08",
+      "worktree": "/Users/erick/orca/worktrees/cadastro-de-usuarios/task-08",
+      "agent": "a6b19a1dc74ff3cb3",
+      "pull_request": "https://github.com/ErickMachado/api.fincheck.com.br/pull/41"
+    }
+  },
+  "OND-4": {
+    "TASK-09": {
+      "status": "DONE",
+      "branch": "feature/cadastro-de-usuarios/task-09",
+      "worktree": "/Users/erick/orca/worktrees/cadastro-de-usuarios/task-09",
+      "agent": "ad963e60880ee9bec",
+      "pull_request": "https://github.com/ErickMachado/api.fincheck.com.br/pull/42"
+    }
+  },
+  "OND-5": {
+    "TASK-10": {
+      "status": "DONE",
+      "branch": "feature/cadastro-de-usuarios/task-10",
+      "worktree": "/Users/erick/orca/worktrees/cadastro-de-usuarios/task-10",
+      "agent": "a6c67ba2a33722623",
+      "pull_request": "https://github.com/ErickMachado/api.fincheck.com.br/pull/43"
+    }
+  },
+  "OND-6": {
+    "TASK-11": {
+      "status": "DONE",
+      "branch": "feature/cadastro-de-usuarios/task-11",
+      "worktree": "/Users/erick/orca/worktrees/cadastro-de-usuarios/task-11",
+      "agent": "ac3400c1335381d93",
+      "pull_request": "https://github.com/ErickMachado/api.fincheck.com.br/pull/44"
+    }
+  },
+  "OND-7": {
+    "TASK-12": {
+      "status": "DONE",
+      "branch": "feature/cadastro-de-usuarios/task-12",
+      "worktree": "/Users/erick/orca/worktrees/cadastro-de-usuarios/task-12",
+      "agent": "a842fd7bbc013abba",
+      "pull_request": "https://github.com/ErickMachado/api.fincheck.com.br/pull/45"
+    },
+    "TASK-13": {
+      "status": "DONE",
+      "branch": "feature/cadastro-de-usuarios/task-13",
+      "worktree": "/Users/erick/orca/worktrees/cadastro-de-usuarios/task-13",
+      "agent": "a41bfaee694a1fad2",
+      "pull_request": "https://github.com/ErickMachado/api.fincheck.com.br/pull/46"
+    }
+  },
+  "OND-8": {
+    "TASK-14": {
+      "status": "DONE",
+      "branch": "feature/cadastro-de-usuarios/task-14",
+      "worktree": "/Users/erick/orca/worktrees/cadastro-de-usuarios/task-14",
+      "agent": "a9c67f6e0d096fdbb",
+      "pull_request": "https://github.com/ErickMachado/api.fincheck.com.br/pull/47"
+    }
+  },
+  "integration_branches": {
+    "base-ond-2": "feature/cadastro-de-usuarios/base-ond-2",
+    "base-ond-3": "feature/cadastro-de-usuarios/base-ond-3",
+    "base-ond-7": "feature/cadastro-de-usuarios/base-ond-7"
+  }
+}
