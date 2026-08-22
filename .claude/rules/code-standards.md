@@ -2,7 +2,6 @@
 
 ## Segurança
 
-- Respeite o período de quarentena definido em `.npmrc`, se a versão atual não atingir o período de quarentena, selecione a versão anterior;
 - SEMPRE armazene valores sensíveis em variáveis de ambiente;
 
 ## Qualidade
