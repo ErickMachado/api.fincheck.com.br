@@ -56,6 +56,14 @@ export class Problem extends Error {
     return problem
   }
 
+  public static badRequest(): Problem {
+    return new Problem({
+      title: 'Malformed request',
+      detail: 'The request could not be read as sent',
+      status: StatusCode.BadRequest
+    })
+  }
+
   public static create(details: Details): Problem {
     return new Problem(details)
   }
