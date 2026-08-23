@@ -1,10 +1,8 @@
 import { faker } from '@faker-js/faker'
-import { type MailCatcherClient, type MailCatcherMessage } from '@tests/setup/mailcatcher'
-import { poll, type PollOptions } from '@tests/setup/poll'
 
 const PASSWORD_MIN_LENGTH = 8
 const PASSWORD_MAX_LENGTH = 64
-const TOKEN_PATTERN = /token=([^&"'\s]+)/
+const JSON_HEADERS = { 'Content-Type': 'application/json' }
 
 export type SignUpInput = Readonly<{
   email: string
@@ -13,16 +11,12 @@ export type SignUpInput = Readonly<{
   password: string
 }>
 
-export type SignUpResult = Readonly<{
+export type RequestResult = Readonly<{
   body: string
-  input: SignUpInput
   status: number
 }>
 
-export type ActivationResult = Readonly<{
-  body: string
-  status: number
-}>
+export type SignUpResult = RequestResult & Readonly<{ input: SignUpInput }>
 
 export function buildSignUpInput(overrides: Partial<SignUpInput> = {}): SignUpInput {
   return {
@@ -41,66 +35,46 @@ export async function requestSignUp(
   overrides: Partial<SignUpInput> = {}
 ): Promise<SignUpResult> {
   const input = buildSignUpInput(overrides)
-
-  const response = await fetch(`${address}/v1/users`, {
-    body: JSON.stringify({
+  const result = await postJSON(
+    `${address}/v1/users`,
+    JSON.stringify({
       email: input.email,
       first_name: input.firstName,
       last_name: input.lastName,
       password: input.password
-    }),
-    headers: { 'Content-Type': 'application/json' },
-    method: 'POST'
-  })
+    })
+  )
 
-  return { body: await response.text(), input, status: response.status }
+  return { ...result, input }
 }
 
-export async function requestActivation(address: string, token: string): Promise<ActivationResult> {
-  const response = await fetch(`${address}/v1/users/activations`, {
-    body: JSON.stringify({ token }),
-    headers: { 'Content-Type': 'application/json' },
-    method: 'POST'
-  })
+export async function requestRawSignUp(address: string, body: string): Promise<RequestResult> {
+  return postJSON(`${address}/v1/users`, body)
+}
+
+export async function requestActivation(address: string, token: string): Promise<RequestResult> {
+  return postJSON(`${address}/v1/users/activations`, JSON.stringify({ token }))
+}
+
+export async function requestRawActivation(address: string, body: string): Promise<RequestResult> {
+  return postJSON(`${address}/v1/users/activations`, body)
+}
+
+async function postJSON(url: string, body: string): Promise<RequestResult> {
+  const response = await fetch(url, { body, headers: JSON_HEADERS, method: 'POST' })
 
   return { body: await response.text(), status: response.status }
 }
 
-export async function findActivationToken(
-  mailcatcher: MailCatcherClient,
-  recipient: string,
-  options?: PollOptions
-): Promise<string> {
-  return extractActivationToken(await fetchEmailBody(mailcatcher, recipient, options))
+export function aliasOf(email: string): string {
+  const [local, domain] = email.toLowerCase().split('@')
+
+  return `${local}+${faker.word.sample()}@${domain}`
 }
 
-export async function fetchEmailBody(
-  mailcatcher: MailCatcherClient,
-  recipient: string,
-  options?: PollOptions
-): Promise<string> {
-  const messages = await poll(
-    () => mailcatcher.list(),
-    (messages) => messages.some((message) => matchesRecipient(message, recipient)),
-    options
-  )
-  const message = messages.find((candidate) => matchesRecipient(candidate, recipient))
-
-  if (!message) throw new Error('Mensagem de ativação não encontrada para o destinatário')
-
-  return mailcatcher.body(message.id)
-}
-
-function matchesRecipient(message: MailCatcherMessage, recipient: string): boolean {
-  const normalized = recipient.toLowerCase()
-
-  return message.recipients.some((address) => address.toLowerCase().includes(normalized))
-}
-
-function extractActivationToken(source: string): string {
-  const match = TOKEN_PATTERN.exec(source)
-
-  if (!match) throw new Error('Token de ativação não encontrado na mensagem')
-
-  return decodeURIComponent(match[1])
+export function mixCase(value: string): string {
+  return value
+    .split('')
+    .map((char, index) => (index % 2 === 0 ? char.toUpperCase() : char.toLowerCase()))
+    .join('')
 }

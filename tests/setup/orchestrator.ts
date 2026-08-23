@@ -9,22 +9,13 @@ import {
   type BootstrappedOrchestrator
 } from '@tests/setup/bootstrap'
 import { stopContainers } from '@tests/setup/containers'
+import { MailOrchestrator } from '@tests/setup/mail'
 import {
-  emailQueueDepth,
-  pollEmailQueueDepth,
-  publishEmailMessageWithDeaths,
-  publishMalformedEmailMessage,
-  publishRawEmailMessage,
-  type EmailQueueName
-} from '@tests/setup/email-queues'
-import { type MailCatcherMessage } from '@tests/setup/mailcatcher'
-import { poll, type PollOptions } from '@tests/setup/poll'
-import {
-  fetchEmailBody,
-  findActivationToken,
   requestActivation,
+  requestRawActivation,
+  requestRawSignUp,
   requestSignUp,
-  type ActivationResult,
+  type RequestResult,
   type SignUpInput,
   type SignUpResult
 } from '@tests/setup/users'
@@ -34,7 +25,11 @@ const TRUNCATE_TABLES_SQL = 'TRUNCATE TABLE users, user_activation_tokens CASCAD
 const EMAIL_QUEUES = [EMAILS_OUTGOING_QUEUE, EMAILS_RETRY_QUEUE, EMAILS_DEAD_QUEUE]
 
 export class Orchestrator {
-  private constructor(private readonly deps: BootstrappedOrchestrator) {}
+  public readonly mail: MailOrchestrator
+
+  private constructor(private readonly deps: BootstrappedOrchestrator) {
+    this.mail = new MailOrchestrator(deps.channel, deps.mailcatcher)
+  }
 
   public get address(): string {
     return this.deps.api.address
@@ -59,56 +54,16 @@ export class Orchestrator {
     return requestSignUp(this.address, overrides)
   }
 
-  public async activate(token: string): Promise<ActivationResult> {
+  public async signUpWithBody(body: string): Promise<RequestResult> {
+    return requestRawSignUp(this.address, body)
+  }
+
+  public async activate(token: string): Promise<RequestResult> {
     return requestActivation(this.address, token)
   }
 
-  public async readActivationToken(recipient: string, options?: PollOptions): Promise<string> {
-    return findActivationToken(this.deps.mailcatcher, recipient, options)
-  }
-
-  public async readEmailBody(recipient: string, options?: PollOptions): Promise<string> {
-    return fetchEmailBody(this.deps.mailcatcher, recipient, options)
-  }
-
-  public async waitForEmails(count: number, options?: PollOptions): Promise<MailCatcherMessage[]> {
-    return poll(
-      () => this.deps.mailcatcher.list(),
-      (messages) => messages.length >= count,
-      options
-    )
-  }
-
-  public async assertNoEmailWasSent(expectedCount = 0, options?: PollOptions): Promise<void> {
-    await poll(
-      () => emailQueueDepth(this.deps.channel, 'outgoing'),
-      (count) => count === 0,
-      options
-    )
-    const messages = await this.deps.mailcatcher.list()
-
-    if (messages.length > expectedCount)
-      throw new Error('Uma mensagem inesperada chegou à caixa de e-mail')
-  }
-
-  public publishRawEmail(message: unknown): void {
-    publishRawEmailMessage(this.deps.channel, message)
-  }
-
-  public publishEmailWithDeaths(message: unknown, deathCount: number): void {
-    publishEmailMessageWithDeaths(this.deps.channel, message, deathCount)
-  }
-
-  public publishMalformedEmail(): void {
-    publishMalformedEmailMessage(this.deps.channel)
-  }
-
-  public async waitForEmailQueueDepth(
-    queue: EmailQueueName,
-    minimum: number,
-    options?: PollOptions
-  ): Promise<number> {
-    return pollEmailQueueDepth(this.deps.channel, queue, minimum, options)
+  public async activateWithBody(body: string): Promise<RequestResult> {
+    return requestRawActivation(this.address, body)
   }
 
   public async stop(): Promise<void> {

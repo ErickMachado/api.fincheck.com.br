@@ -28,6 +28,6 @@ describe('POST /v1/users', () => {
       [result.input.email.toLowerCase()]
     )
     expect(user).toBeTruthy()
-    await orchestrator.waitForEmailQueueDepth('retry', 1)
+    await orchestrator.mail.waitForQueueDepth('retry', 1)
   })
 })
