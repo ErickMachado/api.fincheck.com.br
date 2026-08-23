@@ -1,12 +1,12 @@
 import { z } from 'zod'
 
-const EMAIL_MAX_LENGTH = 254
+export const EMAIL_MAX_LENGTH = 254
 
 const EMAIL_SCHEMA = z
   .string()
   .trim()
   .toLowerCase()
-  .max(EMAIL_MAX_LENGTH, { error: 'Must be at most 254 characters long' })
+  .max(EMAIL_MAX_LENGTH, { error: `Must be at most ${EMAIL_MAX_LENGTH} characters long` })
   .pipe(z.email({ error: 'Must be a valid email address' }))
 
 export class Email {

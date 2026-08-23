@@ -3,10 +3,10 @@ import { type CreateUser } from '@application/usecases/auth/create-user'
 import { type Controller, type HTTPRequest, type HTTPResponse } from '@common/http/controller'
 import { Problem } from '@common/http/problem'
 import { StatusCode } from '@common/http/statuses'
+import { EMAIL_MAX_LENGTH } from '@domain/value-objects/email'
 
 const NAME_MIN_LENGTH = 1
 const NAME_MAX_LENGTH = 100
-const EMAIL_MAX_LENGTH = 254
 const PASSWORD_MIN_LENGTH = 8
 const PASSWORD_MAX_LENGTH = 64
 
