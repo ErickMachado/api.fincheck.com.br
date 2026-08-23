@@ -62,7 +62,10 @@ export class RabbitMQConsumer {
   }
 
   private static deadLetter<T>(options: ConsumeOptions<T>, message: ConsumeMessage): void {
-    options.channel.sendToQueue(options.deadLetterQueue, message.content, { persistent: true })
+    options.channel.sendToQueue(options.deadLetterQueue, message.content, {
+      ...message.properties,
+      persistent: true
+    })
     options.channel.ack(message)
   }
 
