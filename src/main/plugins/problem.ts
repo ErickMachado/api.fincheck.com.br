@@ -3,7 +3,7 @@ import { ZodError } from 'zod'
 import { Problem } from '@common/http/problem'
 
 export function problem(error: Error, request: FastifyRequest, reply: FastifyReply) {
-  let response: Problem = null
+  let response: Problem | null = null
 
   if (error instanceof ZodError) {
     response = Problem.fromZod(error)
