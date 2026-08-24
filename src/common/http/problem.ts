@@ -1,6 +1,8 @@
 import { type ZodError } from 'zod'
 import { StatusCode } from '@common/http/statuses'
 
+const ROOT_POINTER = '#'
+
 type Details = Readonly<{
   title: string
   detail: string
@@ -46,7 +48,7 @@ export class Problem extends Error {
     const problem = new Problem({
       title: 'Request validation failed',
       detail: 'One or more fields in the request are invalid',
-      status: StatusCode.BadRequest
+      status: StatusCode.UnprocessableEntity
     })
 
     for (const issue of error.issues) {
@@ -66,15 +68,16 @@ export class Problem extends Error {
 
   private addError(error: ZodError['issues'][number]): void {
     let key = error.path.join('/')
+    let message = error.message.replace('Invalid input:', '').trim()
 
     if (key === '') {
-      key = '#'
+      key = ROOT_POINTER
     } else {
-      key = `#/${key}`
+      key = `${ROOT_POINTER}/${key}`
     }
 
     if (this.errors.has(key)) return
 
-    this.errors.set(key, error.message)
+    this.errors.set(key, message)
   }
 }
