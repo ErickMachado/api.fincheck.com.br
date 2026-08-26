@@ -9,6 +9,7 @@
     "url": "git@github.com:ErickMachado/api.fincheck.com.br.git"
   },
   "scripts": {
+    "build:check": "tsc --noEmit",
     "format:check": "oxfmt --check",
     "format:fix": "oxfmt",
     "lint:commit": "commitlint --edit $1",
