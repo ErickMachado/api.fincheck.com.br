@@ -15,18 +15,22 @@
     "lint:commit": "commitlint --edit $1",
     "lint:check": "oxlint",
     "lint:fix": "oxlint --fix",
+    "services:up": "dotenv -e .env -- docker compose -f src/infra/docker/compose.yml up -d",
+    "services:down": "docker compose -f src/infra/docker/compose.yml down",
     "start:dev": "tsx watch --env-file .env src/main/main.ts",
     "test": "dotenv -e .env.test -- vitest run --dir tests",
     "test:watch": "dotenv -e .env.test -- vitest --dir tests"
   },
   "dependencies": {
     "fastify": "5.10.0",
+    "pg": "8.23.0",
     "zod": "4.4.3"
   },
   "devDependencies": {
     "@commitlint/cli": "21.2.0",
     "@commitlint/config-conventional": "21.2.0",
     "@types/node": "26.1.0",
+    "@types/pg": "8.23.1",
     "dotenv-cli": "11.0.0",
     "lefthook": "2.1.10",
     "oxfmt": "0.58.0",
